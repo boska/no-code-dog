@@ -12,21 +12,19 @@ export default async function ForgotPassword(props: {
   const searchParams = await props.searchParams;
   return (
     <>
-      <form className="flex-1 flex flex-col w-full gap-2 text-foreground [&>input]:mb-6 min-w-64 max-w-64 mx-auto">
-        <div>
-          <h1 className="text-2xl font-medium">Reset Password</h1>
-          <p className="text-sm text-secondary-foreground">
-            Already have an account?{" "}
-            <Link className="text-primary underline" href="/sign-in">
-              Sign in
-            </Link>
-          </p>
-        </div>
+      <form className="flex flex-col min-w-64">
+        <h1 className="text-2xl font-medium text-white">重設密碼</h1>
+        <p className="text-sm text-gray-400">
+          想起密碼了？{" "}
+          <Link className="text-red-500 font-medium hover:text-red-400" href="/sign-in">
+            返回登入
+          </Link>
+        </p>
         <div className="flex flex-col gap-2 [&>input]:mb-3 mt-8">
-          <Label htmlFor="email">Email</Label>
-          <Input name="email" placeholder="you@example.com" required />
-          <SubmitButton formAction={forgotPasswordAction}>
-            Reset Password
+          <Label htmlFor="email" className="text-gray-300">電子信箱</Label>
+          <Input name="email" placeholder="請輸入您的電子信箱" required />
+          <SubmitButton formAction={forgotPasswordAction} pendingText="處理中...">
+            發送重設密碼連結
           </SubmitButton>
           <FormMessage message={searchParams} />
         </div>
