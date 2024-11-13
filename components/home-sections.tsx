@@ -11,7 +11,7 @@ export default function HomeSections() {
                         {/* 圖片區塊 */}
                         <div className="relative aspect-[16/9] rounded-lg overflow-hidden">
                             <Image
-                                src="/hero.png"
+                                src="https://placehold.co/1920x1080/1f1f1f/cccccc?text=Shooting+Range"
                                 alt="布拉格射擊場內部"
                                 fill
                                 className="object-cover"
@@ -66,17 +66,17 @@ export default function HomeSections() {
                             {
                                 title: '專業射擊場',
                                 description: '捷克最大室內射擊場，配備完善的安全設施和專業設備',
-                                image: '/features/range.jpg'
+                                image: 'https://placehold.co/800x600/1f1f1f/cccccc?text=Range'
                             },
                             {
                                 title: '專業教練指導',
                                 description: '經驗豐富的教練團隊，提供英文教學，確保您的射擊體驗安全順暢',
-                                image: '/features/instructor.jpg'
+                                image: 'https://placehold.co/800x600/1f1f1f/cccccc?text=Instructor'
                             },
                             {
                                 title: '便利接服務',
                                 description: '提供飯店接送服務，省去交通煩惱，讓您專注享受射擊樂趣',
-                                image: '/features/transport.jpg'
+                                image: 'https://placehold.co/800x600/1f1f1f/cccccc?text=Transport'
                             }
                         ].map((feature, index) => (
                             <div key={index} className="bg-zinc-800/50 rounded-lg p-6 text-center">
@@ -106,10 +106,10 @@ export default function HomeSections() {
 
                     <div className="grid md:grid-cols-4 gap-6">
                         {[
-                            { name: 'Glock 17', type: '手槍', image: '/guns/glock.jpg' },
-                            { name: 'CZ 75', type: '手槍', image: '/guns/cz75.jpg' },
-                            { name: 'AK-47', type: '步槍', image: '/guns/ak47.jpg' },
-                            { name: 'AR-15', type: '步槍', image: '/guns/ar15.jpg' }
+                            { name: 'Glock 17', type: '手槍', image: 'https://placehold.co/800x600/1f1f1f/cccccc?text=Glock+17' },
+                            { name: 'CZ 75', type: '手槍', image: 'https://placehold.co/800x600/1f1f1f/cccccc?text=CZ+75' },
+                            { name: 'AK-47', type: '步槍', image: 'https://placehold.co/800x600/1f1f1f/cccccc?text=AK-47' },
+                            { name: 'AR-15', type: '步槍', image: 'https://placehold.co/800x600/1f1f1f/cccccc?text=AR-15' }
                         ].map((gun, index) => (
                             <div key={index} className="bg-zinc-900 rounded-lg overflow-hidden">
                                 <div className="relative w-full h-48">
