@@ -61,7 +61,8 @@ export function ProfileCard({ user }: ProfileCardProps) {
         }
     };
 
-    const formatDate = (dateString: string) => {
+    const formatDate = (dateString: string | undefined) => {
+        if (!dateString) return 'Never';
         return format(new Date(dateString), 'MMM dd, yyyy HH:mm');
     };
 
