@@ -5,7 +5,7 @@ export default function HomeSections() {
     return (
         <>
             {/* 射擊場展示區塊 */}
-            <section className="py-20 bg-zinc-900">
+            <section className="py-20 bg-background">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid md:grid-cols-2 gap-12 items-center">
                         {/* 圖片區塊 */}
@@ -21,8 +21,8 @@ export default function HomeSections() {
 
                         {/* 文字內容區塊 */}
                         <div className="space-y-6">
-                            <h2 className="text-3xl font-bold text-white">專業室內射擊場</h2>
-                            <p className="text-gray-400 text-lg">
+                            <h2 className="text-3xl font-bold text-foreground">專業室內射擊場</h2>
+                            <p className="text-muted-foreground text-lg">
                                 我們的射擊場配備完善的安全設施，提供多種射擊位置和靶位選擇。
                                 無論您是初學者還是射擊愛好者，都能在這裡找到適合的挑戰。
                             </p>
@@ -34,7 +34,7 @@ export default function HomeSections() {
                                     '專業教練指導',
                                     '攝影紀錄服務'
                                 ].map((item, index) => (
-                                    <li key={index} className="flex items-center gap-2 text-gray-300">
+                                    <li key={index} className="flex items-center gap-2 text-muted-foreground">
                                         <Check className="h-5 w-5 text-red-500" />
                                         {item}
                                     </li>
@@ -54,11 +54,11 @@ export default function HomeSections() {
             </section>
 
             {/* 特色服務區塊 */}
-            <section className="py-20 bg-zinc-900">
+            <section className="py-20 bg-background">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-16">
-                        <h2 className="text-3xl font-bold text-white mb-4">為什麼選擇我們？</h2>
-                        <p className="text-gray-400">專業射擊場・專業教練・安全保障・一站式服務</p>
+                        <h2 className="text-3xl font-bold text-foreground mb-4">為什麼選擇我們？</h2>
+                        <p className="text-muted-foreground">專業射擊場・專業教練・安全保障・一站式服務</p>
                     </div>
 
                     <div className="grid md:grid-cols-3 gap-8">
@@ -79,7 +79,7 @@ export default function HomeSections() {
                                 image: 'https://placehold.co/800x600/1f1f1f/cccccc?text=Transport'
                             }
                         ].map((feature, index) => (
-                            <div key={index} className="bg-zinc-800/50 rounded-lg p-6 text-center">
+                            <div key={index} className="bg-card/50 rounded-lg p-6 text-center">
                                 <div className="relative w-full h-48 mb-6 rounded-lg overflow-hidden">
                                     <Image
                                         src={feature.image}
@@ -88,8 +88,8 @@ export default function HomeSections() {
                                         className="object-cover"
                                     />
                                 </div>
-                                <h3 className="text-xl font-bold text-white mb-2">{feature.title}</h3>
-                                <p className="text-gray-400">{feature.description}</p>
+                                <h3 className="text-xl font-bold text-foreground mb-2">{feature.title}</h3>
+                                <p className="text-muted-foreground">{feature.description}</p>
                             </div>
                         ))}
                     </div>
@@ -97,11 +97,11 @@ export default function HomeSections() {
             </section>
 
             {/* 熱門槍款展示 */}
-            <section className="py-20 bg-black">
+            <section className="py-20 bg-card">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-16">
-                        <h2 className="text-3xl font-bold text-white mb-4">熱門槍款展示</h2>
-                        <p className="text-gray-400">多款經典槍型任您選擇，體驗不同射擊感受</p>
+                        <h2 className="text-3xl font-bold text-foreground mb-4">熱門槍款展示</h2>
+                        <p className="text-muted-foreground">多款經典槍型任您選擇，體驗不同射擊感受</p>
                     </div>
 
                     <div className="grid md:grid-cols-4 gap-6">
@@ -111,7 +111,7 @@ export default function HomeSections() {
                             { name: 'AK-47', type: '步槍', image: 'https://placehold.co/800x600/1f1f1f/cccccc?text=AK-47' },
                             { name: 'AR-15', type: '步槍', image: 'https://placehold.co/800x600/1f1f1f/cccccc?text=AR-15' }
                         ].map((gun, index) => (
-                            <div key={index} className="bg-zinc-900 rounded-lg overflow-hidden">
+                            <div key={index} className="bg-card rounded-lg overflow-hidden">
                                 <div className="relative w-full h-48">
                                     <Image
                                         src={gun.image}
@@ -121,8 +121,8 @@ export default function HomeSections() {
                                     />
                                 </div>
                                 <div className="p-4">
-                                    <h3 className="text-lg font-bold text-white">{gun.name}</h3>
-                                    <p className="text-gray-400">{gun.type}</p>
+                                    <h3 className="text-lg font-bold text-foreground">{gun.name}</h3>
+                                    <p className="text-muted-foreground">{gun.type}</p>
                                 </div>
                             </div>
                         ))}
@@ -131,11 +131,11 @@ export default function HomeSections() {
             </section>
 
             {/* 體驗流程 */}
-            <section className="py-20 bg-zinc-900">
+            <section className="py-20 bg-background">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-16">
-                        <h2 className="text-3xl font-bold text-white mb-4">體驗流程</h2>
-                        <p className="text-gray-400">簡單四步驟，輕鬆體驗射擊樂趣</p>
+                        <h2 className="text-3xl font-bold text-foreground mb-4">體驗流程</h2>
+                        <p className="text-muted-foreground">簡單四步驟，輕鬆體驗射擊樂趣</p>
                     </div>
 
                     <div className="grid md:grid-cols-4 gap-8">
@@ -149,8 +149,8 @@ export default function HomeSections() {
                                 <div className="w-12 h-12 rounded-full bg-red-600 text-white flex items-center justify-center mx-auto mb-4 text-xl font-bold">
                                     {item.step}
                                 </div>
-                                <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
-                                <p className="text-gray-400">{item.desc}</p>
+                                <h3 className="text-xl font-bold text-foreground mb-2">{item.title}</h3>
+                                <p className="text-muted-foreground">{item.desc}</p>
                             </div>
                         ))}
                     </div>
@@ -158,11 +158,11 @@ export default function HomeSections() {
             </section>
 
             {/* FAQ 區塊 */}
-            <section className="py-20 bg-black">
+            <section className="py-20 bg-card">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-16">
-                        <h2 className="text-3xl font-bold text-white mb-4">常見問題</h2>
-                        <p className="text-gray-400">解答您的疑問，讓體驗更安心</p>
+                        <h2 className="text-3xl font-bold text-foreground mb-4">常見問題</h2>
+                        <p className="text-muted-foreground">解答您的疑問，讓體驗更安心</p>
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
@@ -184,9 +184,9 @@ export default function HomeSections() {
                                 a: '是的，全程會有專業教練一對一指導。'
                             }
                         ].map((faq, index) => (
-                            <div key={index} className="bg-zinc-900 p-6 rounded-lg">
-                                <h3 className="text-lg font-bold text-white mb-2">{faq.q}</h3>
-                                <p className="text-gray-400">{faq.a}</p>
+                            <div key={index} className="bg-card p-6 rounded-lg">
+                                <h3 className="text-lg font-bold text-foreground mb-2">{faq.q}</h3>
+                                <p className="text-muted-foreground">{faq.a}</p>
                             </div>
                         ))}
                     </div>
@@ -194,14 +194,20 @@ export default function HomeSections() {
             </section>
 
             {/* CTA 區塊 */}
-            <section className="py-20 bg-zinc-900">
+            <section className="py-20 bg-background">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <h2 className="text-3xl font-bold text-white mb-8">準備好體驗射擊的刺激了？</h2>
+                    <h2 className="text-3xl font-bold text-foreground mb-8">準備好體驗射擊的刺激了？</h2>
                     <div className="flex gap-4 justify-center">
-                        <a href="/booking" className="px-8 py-4 bg-red-600 text-white rounded-lg hover:bg-red-700 transition font-bold">
+                        <a
+                            href="/booking"
+                            className="px-8 py-4 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition font-bold"
+                        >
                             立即預約
                         </a>
-                        <a href="/contact" className="px-8 py-4 border border-white text-white rounded-lg hover:bg-white/10 transition">
+                        <a
+                            href="/contact"
+                            className="px-8 py-4 border border-border text-foreground rounded-lg hover:bg-accent transition"
+                        >
                             聯絡我們
                         </a>
                     </div>
