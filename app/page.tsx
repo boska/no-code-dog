@@ -1,13 +1,5 @@
-import Hero from "@/components/hero";
-import HomeSections from "@/components/home-sections";
-import PricingSection from "@/components/pricing-section";
+import { HeroYangu } from "@/components/hero-yangu";
 
-export default async function Index() {
-  return (
-    <>
-      <Hero />
-      <HomeSections />
-      <PricingSection />
-    </>
-  );
+export default function Home() {
+  return <HeroYangu />;
 }
