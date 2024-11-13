@@ -58,11 +58,6 @@ async function GithubCard() {
                                         Joined {formatDistanceToNow(new Date(user.created_at), { addSuffix: true })}
                                     </div>
                                 </div>
-                                {user.location && (
-                                    <div className="mt-6">
-                                        <MapView location={user.location} />
-                                    </div>
-                                )}
                             </div>
                         </div>
                         <div className="flex gap-6 text-sm">
@@ -77,6 +72,13 @@ async function GithubCard() {
                         </div>
                     </div>
                 </CardHeader>
+
+                <CardHeader>
+                    <div className="mt-6">
+                        <MapView />
+                    </div>
+                </CardHeader>
+
                 <CardContent>
                     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
                         {repos.map((repo) => (
