@@ -7,6 +7,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Suspense } from "react";
 import Link from "next/link";
 import { formatDistanceToNow } from "date-fns";
+import { MapView } from './map-view';
 
 async function GithubCard() {
     const { user, repos } = await getGithubProfile('boska');
@@ -57,6 +58,11 @@ async function GithubCard() {
                                         Joined {formatDistanceToNow(new Date(user.created_at), { addSuffix: true })}
                                     </div>
                                 </div>
+                                {user.location && (
+                                    <div className="mt-6">
+                                        <MapView location={user.location} />
+                                    </div>
+                                )}
                             </div>
                         </div>
                         <div className="flex gap-6 text-sm">
