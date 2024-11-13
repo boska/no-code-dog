@@ -11,7 +11,7 @@ export default async function ProfilePage() {
     }
 
     return (
-        <div className="min-h-screen flex items-center justify-center p-4 bg-zinc-900">
+        <div className="min-h-screen flex items-center justify-center p-4 bg-background mt-16">
             <ProfileCard user={user} />
         </div>
     );

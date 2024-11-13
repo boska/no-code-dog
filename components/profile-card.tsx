@@ -77,7 +77,7 @@ export function ProfileCard({ user }: ProfileCardProps) {
     };
 
     return (
-        <div className="w-full max-w-md bg-black/30 p-8 rounded-xl backdrop-blur-sm border border-white/10">
+        <div className="w-full max-w-md bg-card/30 p-8 rounded-xl backdrop-blur-sm border border-border">
             <div className="flex items-center gap-4 mb-8">
                 <div className="relative">
                     <Avatar className="h-20 w-20">
@@ -86,7 +86,7 @@ export function ProfileCard({ user }: ProfileCardProps) {
                     </Avatar>
                     <label
                         htmlFor="avatar-upload"
-                        className="absolute bottom-0 right-0 p-1 bg-black/50 rounded-full cursor-pointer hover:bg-black/70"
+                        className="absolute bottom-0 right-0 p-1 bg-background/50 rounded-full cursor-pointer hover:bg-background/70"
                     >
                         <Camera className="h-4 w-4" />
                         <input
@@ -103,7 +103,7 @@ export function ProfileCard({ user }: ProfileCardProps) {
 
             <div className="space-y-6">
                 <div className="space-y-2">
-                    <Label className="text-gray-300">Full Name</Label>
+                    <Label>Full Name</Label>
                     {isEditing ? (
                         <form className="flex gap-2" onSubmit={(e) => {
                             e.preventDefault();
@@ -121,10 +121,10 @@ export function ProfileCard({ user }: ProfileCardProps) {
                         </form>
                     ) : (
                         <div className="flex justify-between items-center">
-                            <p className="text-white">{fullName || 'Not set'}</p>
+                            <p className="text-foreground">{fullName || 'Not set'}</p>
                             <button
                                 onClick={() => setIsEditing(true)}
-                                className="text-xs text-red-500 hover:text-red-400"
+                                className="text-xs text-primary hover:text-primary/80"
                             >
                                 Edit
                             </button>
@@ -133,30 +133,30 @@ export function ProfileCard({ user }: ProfileCardProps) {
                 </div>
 
                 <div className="space-y-2">
-                    <Label className="text-gray-300">Email</Label>
-                    <p className="text-white">{user.email}</p>
+                    <Label>Email</Label>
+                    <p className="text-foreground">{user.email}</p>
                 </div>
 
                 <div className="space-y-2">
-                    <Label className="text-gray-300">Account Created</Label>
-                    <p className="text-white">{formatDate(user.created_at)}</p>
+                    <Label>Account Created</Label>
+                    <p className="text-foreground">{formatDate(user.created_at)}</p>
                 </div>
 
                 <div className="space-y-2">
-                    <Label className="text-gray-300">Last Sign In</Label>
-                    <p className="text-white">{formatDate(user.last_sign_in_at)}</p>
+                    <Label>Last Sign In</Label>
+                    <p className="text-foreground">{formatDate(user.last_sign_in_at)}</p>
                 </div>
 
                 <div className="space-y-2">
-                    <Label className="text-gray-300">Authentication Method</Label>
-                    <p className="text-white capitalize">{user.app_metadata.provider}</p>
+                    <Label>Authentication Method</Label>
+                    <p className="text-foreground capitalize">{user.app_metadata.provider}</p>
                 </div>
 
                 <div className="space-y-2">
-                    <Label className="text-gray-300">Account Status</Label>
+                    <Label>Account Status</Label>
                     <div className="flex items-center gap-2">
                         <span className="w-2 h-2 rounded-full bg-green-500"></span>
-                        <span className="text-white">Verified</span>
+                        <span className="text-foreground">Verified</span>
                     </div>
                 </div>
             </div>
