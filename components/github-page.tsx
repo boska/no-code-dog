@@ -8,9 +8,30 @@ import { Suspense } from "react";
 import Link from "next/link";
 import { formatDistanceToNow } from "date-fns";
 import { MapView } from './map-view';
+import { GithubCharts } from './github-charts';
+import { ActivityHeatmap } from "./github-activity-heatmap";
 
 async function GithubCard() {
-    const { user, repos } = await getGithubProfile('boska');
+    const { user, repos, contributions } = await getGithubProfile('boska');
+
+    // Prepare data for charts
+    const languageStats = repos.reduce((acc: Record<string, number>, repo) => {
+        if (repo.language) {
+            acc[repo.language] = (acc[repo.language] || 0) + 1;
+        }
+        return acc;
+    }, {});
+
+    const languageData = Object.entries(languageStats).map(([name, count]) => ({
+        name,
+        value: count
+    }));
+
+    const repoStats = repos.map(repo => ({
+        name: repo.name,
+        stars: repo.stargazers_count,
+        forks: repo.forks_count
+    }));
 
     return (
         <div className="space-y-6">
@@ -73,13 +94,18 @@ async function GithubCard() {
                     </div>
                 </CardHeader>
 
-                <CardHeader>
+                <CardContent className="space-y-8">
+                    <ActivityHeatmap contributions={contributions} />
+
+                    <GithubCharts
+                        languageData={languageData}
+                        repoStats={repoStats}
+                    />
+
                     <div className="mt-6">
                         <MapView />
                     </div>
-                </CardHeader>
 
-                <CardContent>
                     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
                         {repos.map((repo) => (
                             <Link

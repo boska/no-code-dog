@@ -6,8 +6,8 @@ import { hasEnvVars } from "@/utils/supabase/check-env-vars";
 import "./globals.css";
 
 export const metadata = {
-  title: "布拉格射擊體驗 | Prague Shooting Experience",
-  description: "布拉格最專業的實彈射擊體驗",
+  title: "Yang Lee (boska) a github visualizer",
+  description: "View GitHub profile statistics, contributions, and repository information",
 };
 
 export default function RootLayout({

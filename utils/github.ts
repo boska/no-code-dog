@@ -1,3 +1,5 @@
+import { Octokit } from '@octokit/rest';
+
 export interface GithubRepo {
     name: string;
     full_name: string;
@@ -44,25 +46,39 @@ export interface GithubUser {
     html_url: string;
 }
 
-export async function getGithubProfile(username: string) {
+interface ContributionDay {
+    date: string;
+    count: number;
+}
+
+export interface GithubData {
+    user: GithubUser;
+    repos: GithubRepo[];
+    contributions: ContributionDay[];
+}
+
+export async function getGithubProfile(username: string): Promise<GithubData> {
+    const token = process.env.GITHUB_TOKEN;
+    const octokit = new Octokit({ auth: token });
+
     try {
-        const [userRes, reposRes] = await Promise.all([
-            fetch(`https://api.github.com/users/${username}`, {
-                next: { revalidate: 3600 },
-            }),
-            fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=9&type=owner`, {
-                next: { revalidate: 3600 },
-            }),
+        const [userRes, reposRes, contributionsRes] = await Promise.all([
+            octokit.rest.users.getByUsername({ username }),
+            octokit.rest.repos.listForUser({ username, sort: 'updated' }),
+            octokit.rest.repos.getContributorsStats({ owner: username, repo: username })
         ]);
 
-        if (!userRes.ok || !reposRes.ok) {
-            throw new Error('Failed to fetch GitHub data');
-        }
+        // Process contribution data
+        const contributions = contributionsRes.data?.[0]?.weeks.map(week => ({
+            date: new Date(week.w * 1000).toISOString().split('T')[0],
+            count: week.c
+        })) || [];
 
-        const user: GithubUser = await userRes.json();
-        const repos: GithubRepo[] = await reposRes.json();
-
-        return { user, repos };
+        return {
+            user: userRes.data,
+            repos: reposRes.data,
+            contributions
+        };
     } catch (error) {
         console.error('GitHub API Error:', error);
         return {
@@ -86,6 +102,7 @@ export async function getGithubProfile(username: string) {
                 html_url: '',
             },
             repos: [],
+            contributions: []
         };
     }
 } 
