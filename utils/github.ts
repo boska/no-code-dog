@@ -46,38 +46,23 @@ export interface GithubUser {
     html_url: string;
 }
 
-interface ContributionDay {
-    date: string;
-    count: number;
-}
-
 export interface GithubData {
     user: GithubUser;
     repos: GithubRepo[];
-    contributions: ContributionDay[];
 }
 
 export async function getGithubProfile(username: string): Promise<GithubData> {
-    const token = process.env.GITHUB_TOKEN;
-    const octokit = new Octokit({ auth: token });
+    const octokit = new Octokit();
 
     try {
-        const [userRes, reposRes, contributionsRes] = await Promise.all([
+        const [userRes, reposRes] = await Promise.all([
             octokit.rest.users.getByUsername({ username }),
-            octokit.rest.repos.listForUser({ username, sort: 'updated' }),
-            octokit.rest.repos.getContributorsStats({ owner: username, repo: username })
+            octokit.rest.repos.listForUser({ username, sort: 'updated' })
         ]);
 
-        // Process contribution data
-        const contributions = contributionsRes.data?.[0]?.weeks.map(week => ({
-            date: new Date(week.w * 1000).toISOString().split('T')[0],
-            count: week.c
-        })) || [];
-
         return {
-            user: userRes.data,
-            repos: reposRes.data,
-            contributions
+            user: userRes.data as GithubUser,
+            repos: reposRes.data as GithubRepo[]
         };
     } catch (error) {
         console.error('GitHub API Error:', error);
@@ -101,8 +86,7 @@ export async function getGithubProfile(username: string): Promise<GithubData> {
                 hireable: null,
                 html_url: '',
             },
-            repos: [],
-            contributions: []
+            repos: []
         };
     }
 } 

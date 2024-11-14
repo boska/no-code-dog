@@ -9,10 +9,9 @@ import Link from "next/link";
 import { formatDistanceToNow } from "date-fns";
 import { MapView } from './map-view';
 import { GithubCharts } from './github-charts';
-import { ActivityHeatmap } from "./github-activity-heatmap";
 
 async function GithubCard() {
-    const { user, repos, contributions } = await getGithubProfile('boska');
+    const { user, repos } = await getGithubProfile('boska');
 
     // Prepare data for charts
     const languageStats = repos.reduce((acc: Record<string, number>, repo) => {
@@ -95,8 +94,6 @@ async function GithubCard() {
                 </CardHeader>
 
                 <CardContent className="space-y-8">
-                    <ActivityHeatmap contributions={contributions} />
-
                     <GithubCharts
                         languageData={languageData}
                         repoStats={repoStats}
