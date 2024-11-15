@@ -30,8 +30,16 @@ export default function MapComponent() {
     useEffect(() => {
         if (!mapContainerRef.current || mapRef.current) return;
 
-        // Initialize map
-        mapRef.current = L.map(mapContainerRef.current);
+        // Initialize map with disabled interactions
+        mapRef.current = L.map(mapContainerRef.current, {
+            dragging: false,      // Disable pan/drag
+            touchZoom: false,     // Disable touch zoom
+            doubleClickZoom: false, // Disable double click zoom
+            scrollWheelZoom: false, // Disable scroll wheel zoom
+            boxZoom: false,       // Disable box zoom
+            keyboard: false,      // Disable keyboard navigation
+            zoomControl: false,   // Remove zoom control buttons
+        });
 
         // Add default OpenStreetMap tile layer
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -42,6 +50,26 @@ export default function MapComponent() {
         // Add markers
         const taiwanMarker = L.marker(locations.taiwan.coords).addTo(mapRef.current);
         const pragueMarker = L.marker(locations.prague.coords).addTo(mapRef.current);
+
+        // Add connecting line with custom style
+        const connectionLine = L.polyline(
+            [locations.taiwan.coords, locations.prague.coords],
+            {
+                color: '#FF6B6B',  // Line color
+                weight: 2,         // Line thickness
+                opacity: 0.8,      // Line opacity
+                dashArray: '10, 10', // Creates a dashed line
+                smoothFactor: 1
+            }
+        ).addTo(mapRef.current);
+
+        // Add animation to the line (optional)
+        const animate = () => {
+            const offset = (Date.now() / 100) % 20;
+            connectionLine.setStyle({ dashOffset: -offset });
+            requestAnimationFrame(animate);
+        };
+        animate();
 
         // Add popups
         taiwanMarker.bindPopup('Taiwan').openPopup();
