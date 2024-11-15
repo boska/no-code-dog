@@ -2,6 +2,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Line, LineChart, ResponsiveContainer, PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
+import Image from 'next/image';
 
 interface GithubChartsProps {
     languageData: { name: string; value: number; }[];
@@ -47,25 +48,17 @@ export function GithubCharts({ languageData, repoStats }: GithubChartsProps) {
 
             <Card className="bg-muted/50">
                 <CardHeader>
-                    <CardTitle className="text-sm">Repository Stats</CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <ResponsiveContainer width="100%" height={300}>
-                        <LineChart data={repoStats}>
-                            <Line
-                                type="monotone"
-                                dataKey="stars"
-                                className="stroke-primary"
-                                strokeWidth={2}
-                            />
-                            <Line
-                                type="monotone"
-                                dataKey="forks"
-                                className="stroke-secondary"
-                                strokeWidth={2}
-                            />
-                        </LineChart>
-                    </ResponsiveContainer>
+                    <Image src="/tw.png" alt="Developer Illustration"
+                        width={0}
+                        height={0}
+                        sizes="100vw"
+                        className="w-full h-auto"
+                        style={{
+                            maxWidth: '100%',
+                            height: 'auto'
+                        }} />
                 </CardContent>
             </Card>
         </div>

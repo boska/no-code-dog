@@ -102,55 +102,6 @@ async function GithubCard() {
                     <div className="mt-6">
                         <MapView />
                     </div>
-
-                    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                        {repos.map((repo) => (
-                            <Link
-                                key={repo.name}
-                                href={repo.html_url}
-                                target="_blank"
-                                className="block group"
-                            >
-                                <Card className="h-full bg-muted/50 hover:bg-muted/70 transition-colors border border-border">
-                                    <CardHeader className="p-4">
-                                        <CardTitle className="text-sm group-hover:text-primary transition-colors">
-                                            {repo.name}
-                                        </CardTitle>
-                                        <CardDescription className="text-xs line-clamp-2">
-                                            {repo.description || "No description provided"}
-                                        </CardDescription>
-                                        {repo.topics && repo.topics.length > 0 && (
-                                            <div className="flex flex-wrap gap-1 mt-2">
-                                                {repo.topics.slice(0, 3).map((topic) => (
-                                                    <Badge key={topic} variant="secondary" className="text-[10px]">
-                                                        {topic}
-                                                    </Badge>
-                                                ))}
-                                            </div>
-                                        )}
-                                    </CardHeader>
-                                    <CardContent className="p-4 pt-0">
-                                        <div className="flex justify-between text-xs text-muted-foreground">
-                                            {repo.language && (
-                                                <Badge variant="outline">{repo.language}</Badge>
-                                            )}
-                                            <div className="flex items-center gap-3">
-                                                <span className="flex items-center gap-1">
-                                                    <Star className="h-3 w-3" /> {repo.stargazers_count}
-                                                </span>
-                                                <span className="flex items-center gap-1">
-                                                    <GitFork className="h-3 w-3" /> {repo.forks_count}
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div className="text-xs text-muted-foreground mt-2">
-                                            Updated {formatDistanceToNow(new Date(repo.pushed_at), { addSuffix: true })}
-                                        </div>
-                                    </CardContent>
-                                </Card>
-                            </Link>
-                        ))}
-                    </div>
                 </CardContent>
             </Card>
         </div>
