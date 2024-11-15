@@ -9,7 +9,8 @@ interface GithubChartsProps {
     repoStats: { name: string; stars: number; forks: number; }[];
 }
 
-const COLORS = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEEAD', '#D4A5A5', '#9E579D', '#574B90'];
+const COLORS = ['#FF6B6B',
+    '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEEAD', '#D4A5A5', '#9E579D', '#574B90'];
 
 export function GithubCharts({ languageData, repoStats }: GithubChartsProps) {
     return (
@@ -47,19 +48,15 @@ export function GithubCharts({ languageData, repoStats }: GithubChartsProps) {
             </Card>
 
             <Card className="bg-muted/50">
-                <CardHeader>
-                </CardHeader>
-                <CardContent>
-                    <Image src="/tw.png" alt="Developer Illustration"
-                        width={0}
-                        height={0}
-                        sizes="100vw"
-                        className="w-full h-auto"
-                        style={{
-                            maxWidth: '100%',
-                            height: 'auto'
-                        }} />
-                </CardContent>
+                <Image src="/tw.png" alt="Developer Illustration"
+                    width={0}
+                    height={0}
+                    sizes="100vw"
+                    className="w-full h-auto"
+                    style={{
+                        maxWidth: '100%',
+                        height: 'auto'
+                    }} />
             </Card>
         </div>
     );

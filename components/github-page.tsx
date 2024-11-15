@@ -99,9 +99,9 @@ async function GithubCard() {
                         repoStats={repoStats}
                     />
 
-                    <div className="mt-6">
+                    <Card>
                         <MapView />
-                    </div>
+                    </Card>
                 </CardContent>
             </Card>
         </div>
