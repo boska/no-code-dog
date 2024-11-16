@@ -51,7 +51,58 @@ export interface GithubData {
     repos: GithubRepo[];
 }
 
+interface CacheData {
+    data: GithubData;
+    timestamp: number;
+}
+
+const CACHE_KEY = 'github-profile-cache';
+const CACHE_TTL = 60 * 60 * 1000; // 1 hour
+
+const isClient = typeof window !== 'undefined';
+const isProd = process.env.NODE_ENV === 'production';
+
+function getCachedData(): CacheData | null {
+    if (!isClient || !isProd) return null;
+
+    try {
+        const cached = localStorage.getItem(CACHE_KEY);
+        if (!cached) return null;
+
+        const parsedCache = JSON.parse(cached) as CacheData;
+        if (Date.now() - parsedCache.timestamp > CACHE_TTL) return null;
+
+        return parsedCache;
+    } catch {
+        return null;
+    }
+}
+
+function setCacheData(data: GithubData) {
+    if (!isClient || !isProd) return;
+
+    try {
+        const cacheData: CacheData = {
+            data,
+            timestamp: Date.now()
+        };
+        localStorage.setItem(CACHE_KEY, JSON.stringify(cacheData));
+    } catch (error) {
+        console.error('Cache write error:', error);
+    }
+}
+
 export async function getGithubProfile(username: string): Promise<GithubData> {
+    // Only check cache in production
+    if (isProd) {
+        const cached = getCachedData();
+        if (cached) {
+            return cached.data;
+        }
+    }
+
+    console.log('Fetching GitHub profile for', username);
+
     const octokit = new Octokit();
 
     try {
@@ -60,12 +111,27 @@ export async function getGithubProfile(username: string): Promise<GithubData> {
             octokit.rest.repos.listForUser({ username, sort: 'updated' })
         ]);
 
-        return {
+        const data = {
             user: userRes.data as GithubUser,
             repos: reposRes.data as GithubRepo[]
         };
+
+        // Only cache in production
+        if (isProd) {
+            setCacheData(data);
+        }
+
+        return data;
     } catch (error) {
         console.error('GitHub API Error:', error);
+        // Try to use expired cache in production if API fails
+        if (isProd && isClient) {
+            const expiredCache = localStorage.getItem(CACHE_KEY);
+            if (expiredCache) {
+                return (JSON.parse(expiredCache) as CacheData).data;
+            }
+        }
+
         return {
             user: {
                 login: '',
