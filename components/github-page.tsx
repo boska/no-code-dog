@@ -1,7 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Github, Star, GitFork, Users, Globe, Calendar, MapPin, Building, Twitter } from "lucide-react";
-import { getGithubProfile } from "@/utils/github";
+import { getGithubProfile, GithubRepo } from "@/utils/github";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Link from "next/link";
 import { formatDistanceToNow } from "date-fns";
@@ -12,14 +12,14 @@ import { GithubCharts } from './github-charts';
 const techStackOrder = ['iOS', 'Frontend', 'Backend', 'Other'] as const;
 
 const techStacks = {
-    iOS: ['Swift', 'Objective-C'],
-    Frontend: ['TypeScript', 'JavaScript', 'Vue', 'React', 'HTML', 'CSS'],
-    Backend: ['Node', 'Python', 'Ruby', 'Go', 'Java'],
-    Other: ['Shell', 'Dockerfile']
+    iOS: ['Swift', 'Objective-C'] as string[],
+    Frontend: ['TypeScript', 'JavaScript', 'Vue', 'React', 'HTML', 'CSS'] as string[],
+    Backend: ['Node', 'Python', 'Ruby', 'Go', 'Java'] as string[],
+    Other: ['Shell', 'Dockerfile'] as string[]
 } as const;
 
 // Helper function to categorize repos
-function categorizeRepo(repo: any) {
+function categorizeRepo(repo: GithubRepo) {
     if (!repo.language) return 'Other';
 
     for (const [category, languages] of Object.entries(techStacks)) {

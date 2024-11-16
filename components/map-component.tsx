@@ -66,7 +66,7 @@ export default function MapComponent() {
         // Add animation to the line (optional)
         const animate = () => {
             const offset = (Date.now() / 100) % 20;
-            connectionLine.setStyle({ dashOffset: -offset });
+            connectionLine.setStyle({ dashOffset: offset.toString() });
             requestAnimationFrame(animate);
         };
         animate();
