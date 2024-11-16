@@ -19,6 +19,7 @@
     "@supabase/ssr": "latest",
     "@supabase/supabase-js": "latest",
     "@types/leaflet": "^1.9.14",
+    "@vercel/analytics": "^1.4.0",
     "autoprefixer": "10.4.17",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",

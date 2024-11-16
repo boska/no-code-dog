@@ -1,12 +1,13 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Github, Star, GitFork, Users, Globe, Calendar, MapPin, Building, Twitter } from "lucide-react";
+import { Github, Star, GitFork, Users, Globe, Calendar, MapPin, Building, Twitter, Building2, Code2, Coins, Video, Utensils, MessagesSquare } from "lucide-react";
 import { getGithubProfile, GithubRepo } from "@/utils/github";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Link from "next/link";
 import { formatDistanceToNow } from "date-fns";
 import { MapView } from './map-view';
 import { GithubCharts } from './github-charts';
+import Image from 'next/image';
 
 // Define tech stack categories with specific order
 const techStackOrder = ['iOS', 'Frontend', 'Backend', 'Other'] as const;
@@ -151,7 +152,7 @@ export async function GithubCard() {
                         <div>
                             <CardTitle className="flex items-center gap-2">
                                 <Github className="h-5 w-5" />
-                                {user.name || user.login}
+                                {user.login}
                             </CardTitle>
                             <CardDescription className="mt-2">{user.bio}</CardDescription>
                             <div className="flex flex-wrap gap-4 mt-4 text-sm text-muted-foreground">
@@ -216,7 +217,15 @@ export async function GithubCard() {
                                 <CardHeader>
                                     <div className="flex justify-between items-start">
                                         <div>
-                                            <CardTitle className="text-lg">{exp.role}</CardTitle>
+                                            <CardTitle className="text-lg flex items-center gap-2">
+                                                {exp.company === "SAP Concur" && <Building2 className="h-5 w-5" />}
+                                                {exp.company === "STRV" && <Code2 className="h-5 w-5" />}
+                                                {exp.company === "Zion Blockchain Ltd." && <Coins className="h-5 w-5" />}
+                                                {exp.company === "Viscovery" && <Video className="h-5 w-5" />}
+                                                {exp.company === "EZTABLE" && <Utensils className="h-5 w-5" />}
+                                                {exp.company === "Mobile01" && <MessagesSquare className="h-5 w-5" />}
+                                                {exp.role}
+                                            </CardTitle>
                                             <CardDescription className="mt-1">
                                                 {exp.company} • {exp.location}
                                             </CardDescription>
@@ -227,7 +236,23 @@ export async function GithubCard() {
                                 <CardContent className="space-y-4">
                                     <div className="flex flex-wrap gap-2">
                                         {exp.skills.map((skill) => (
-                                            <Badge key={skill} variant="outline">
+                                            <Badge key={skill} variant="outline" className="flex items-center gap-1">
+                                                {skill === "Swift" && (
+                                                    <Image
+                                                        src="https://raw.githubusercontent.com/devicons/devicon/master/icons/swift/swift-original.svg"
+                                                        alt="Swift"
+                                                        width={16}
+                                                        height={16}
+                                                    />
+                                                )}
+                                                {skill === "React" && (
+                                                    <Image
+                                                        src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg"
+                                                        alt="React"
+                                                        width={16}
+                                                        height={16}
+                                                    />
+                                                )}
                                                 {skill}
                                             </Badge>
                                         ))}
@@ -250,10 +275,30 @@ export async function GithubCard() {
                         categorizedRepos[category]?.length > 0 && (
                             <div key={category} className="space-y-4">
                                 <h3 className="text-lg font-semibold flex items-center gap-2">
-                                    {category === 'iOS' && '📱 '}
-                                    {category === 'Frontend' && '🌐 '}
-                                    {category === 'Backend' && '⚙️ '}
-                                    {category === 'Other' && '🔧 '}
+                                    {category === 'iOS' && (
+                                        <Image
+                                            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/swift/swift-original.svg"
+                                            alt="iOS"
+                                            width={24}
+                                            height={24}
+                                        />
+                                    )}
+                                    {category === 'Frontend' && (
+                                        <Image
+                                            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg"
+                                            alt="Frontend"
+                                            width={24}
+                                            height={24}
+                                        />
+                                    )}
+                                    {category === 'Backend' && (
+                                        <Image
+                                            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg"
+                                            alt="Backend"
+                                            width={24}
+                                            height={24}
+                                        />
+                                    )}
                                     {category}
                                 </h3>
                                 <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">

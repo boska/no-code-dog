@@ -12,6 +12,7 @@ const nextConfig = {
         dangerouslyAllowSVG: true,
         contentDispositionType: 'attachment',
         contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+        domains: ['raw.githubusercontent.com', 'developer.apple.com', 'assets.vercel.com', 'www.vectorlogo.zone'],
     }
 }
 
