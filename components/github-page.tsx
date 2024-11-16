@@ -30,6 +30,86 @@ function categorizeRepo(repo: any) {
     return 'Other';
 }
 
+// Add this interface for experience data
+interface Experience {
+    company: string;
+    role: string;
+    period: string;
+    location: string;
+    skills: string[];
+    highlights: string[];
+}
+
+// Update experience data to match resume
+const experiences: Experience[] = [
+    {
+        company: "SAP Concur",
+        role: "Senior iOS Developer",
+        period: "2021-2024",
+        location: "Prague, Czechia",
+        skills: ["Swift", "SwiftUI", "Objective-C", "UIKit", "SAP Fiori"],
+        highlights: [
+            "Implemented SAP Fiori design system in the iOS app",
+            "Implemented user interface for Joule, an AI-assisted expense recognition flow",
+            "Led cross-functional initiatives across US/EU/Asia(Japan) for travel and expense reimbursement"
+        ]
+    },
+    {
+        company: "STRV",
+        role: "Senior iOS Developer",
+        period: "2019-2021",
+        location: "Prague, Czechia",
+        skills: ["Swift", "AVFoundation", "CoreML", "SwiftUI", "Firebase"],
+        highlights: [
+            "Delivered a mobile video editor with AVFoundation and CoreML",
+            "Integrated payment systems (Apple Pay, Stripe) across multiple client applications",
+            "Relocated to Prague, Czechia for the role"
+        ]
+    },
+    {
+        company: "Zion Blockchain Ltd.",
+        role: "Founder / Developer",
+        period: "2018-2019",
+        location: "Taipei, Taiwan",
+        skills: ["Ethereum", "Solidity", "HiveOS", "Node.js", "PostgreSQL"],
+        highlights: [
+            "Founded a experimental cryptocurrency mining project with efficient GPU configurations and remote management solutions",
+            "More than 100 GPUs were deployed in a data center with 24/7 monitoring"
+        ]
+    },
+    {
+        company: "Viscovery",
+        role: "Senior iOS Developer",
+        period: "2016-2018",
+        location: "Taipei, Taiwan",
+        skills: ["Swift", "Objective-C", "UIKit", "CoreML", "AVFoundation", "PostgreSQL"],
+        highlights: [
+            "Created high-performance video ad SDK for mobile, ensuring seamless integration for content providers"
+        ]
+    },
+    {
+        company: "EZTABLE",
+        role: "iOS Developer",
+        period: "2014-2016",
+        location: "Taipei, Taiwan",
+        skills: ["Objective-C", "UIKit", "RoR", "MySQL"],
+        highlights: [
+            "Developed and maintained internal tools and services using Ruby on Rails, improving operational efficiency"
+        ]
+    },
+    {
+        company: "Mobile01",
+        role: "Junior iOS Developer",
+        period: "2012-2013",
+        location: "Taipei, Taiwan",
+        skills: ["Objective-C", "UIKit", "CoreData"],
+        highlights: [
+            "Build an iOS app for biggest 3C forum in Taiwan, which has 100K+ users",
+            "First iOS job"
+        ]
+    }
+];
+
 export async function GithubCard() {
     const { user, repos } = await getGithubProfile('boska');
 
@@ -124,9 +204,47 @@ export async function GithubCard() {
                     languageData={languageData}
                     repoStats={repoStats}
                 />
+
+                <div className="space-y-6">
+                    <h2 className="text-2xl font-semibold flex items-center gap-2">
+                        <Building className="h-6 w-6" />
+                        Professional Experience
+                    </h2>
+                    <div className="space-y-8">
+                        {experiences.map((exp) => (
+                            <Card key={exp.company} className="bg-muted/50">
+                                <CardHeader>
+                                    <div className="flex justify-between items-start">
+                                        <div>
+                                            <CardTitle className="text-lg">{exp.role}</CardTitle>
+                                            <CardDescription className="mt-1">
+                                                {exp.company} • {exp.location}
+                                            </CardDescription>
+                                        </div>
+                                        <Badge variant="secondary">{exp.period}</Badge>
+                                    </div>
+                                </CardHeader>
+                                <CardContent className="space-y-4">
+                                    <div className="flex flex-wrap gap-2">
+                                        {exp.skills.map((skill) => (
+                                            <Badge key={skill} variant="outline">
+                                                {skill}
+                                            </Badge>
+                                        ))}
+                                    </div>
+                                    <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
+                                        {exp.highlights.map((highlight, index) => (
+                                            <li key={index}>{highlight}</li>
+                                        ))}
+                                    </ul>
+                                </CardContent>
+                            </Card>
+                        ))}
+                    </div>
+                </div>
+
                 <MapView />
 
-                {/* Categorized Repository Grid with ordered sections */}
                 <div className="space-y-6">
                     {techStackOrder.map(category =>
                         categorizedRepos[category]?.length > 0 && (
