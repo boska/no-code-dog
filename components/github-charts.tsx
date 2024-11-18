@@ -6,7 +6,7 @@ import Image from 'next/image';
 
 interface GithubChartsProps {
     languageData: { name: string; value: number; }[];
-    repoStats: { name: string; stars: number; forks: number; }[];
+    repoStats: { name: string; stars: number; forks: number; value: number; }[];
 }
 
 const COLORS = ['#FF6B6B',

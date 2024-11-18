@@ -207,226 +207,220 @@ export async function GithubCard() {
                 </div>
             </CardHeader>
 
-            <CardContent className="space-y-8">
-                <SkillsSection />
-
-                <div className="space-y-8">
-                    {/* Prague Experience Section */}
-                    <div className="space-y-6">
-                        <h2 className="text-2xl font-semibold flex items-center gap-2">
-                            <Building className="h-6 w-6" />
-                            Experience in Prague
-                        </h2>
-                        <div className="space-y-8">
-                            {pragueExperiences.map((exp) => (
-                                <Card key={exp.company} className="bg-muted/50">
-                                    <CardHeader>
-                                        <div className="flex justify-between items-start">
-                                            <div>
-                                                <CardTitle className="text-lg flex items-center gap-2">
-                                                    {exp.company === "SAP Concur" && <Building2 className="h-5 w-5" />}
-                                                    {exp.company === "STRV" && <Code2 className="h-5 w-5" />}
-                                                    {exp.company === "Zion Blockchain Ltd." && <Coins className="h-5 w-5" />}
-                                                    {exp.company === "Viscovery" && <Video className="h-5 w-5" />}
-                                                    {exp.company === "EZTABLE" && <Utensils className="h-5 w-5" />}
-                                                    {exp.company === "Mobile01" && <MessagesSquare className="h-5 w-5" />}
-                                                    {exp.role}
-                                                </CardTitle>
-                                                <CardDescription className="mt-1">
-                                                    {exp.company} • {exp.location}
-                                                </CardDescription>
-                                            </div>
-                                            <Badge variant="secondary">{exp.period}</Badge>
-                                        </div>
-                                    </CardHeader>
-                                    <CardContent className="space-y-4">
-                                        <div className="flex flex-wrap gap-2">
-                                            {exp.skills.map((skill) => (
-                                                <Badge key={skill} variant="outline" className="flex items-center gap-1">
-                                                    {skill === "Swift" && (
-                                                        <Image
-                                                            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/swift/swift-original.svg"
-                                                            alt="Swift"
-                                                            width={16}
-                                                            height={16}
-                                                        />
-                                                    )}
-                                                    {skill === "React" && (
-                                                        <Image
-                                                            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg"
-                                                            alt="React"
-                                                            width={16}
-                                                            height={16}
-                                                        />
-                                                    )}
-                                                    {skill}
-                                                </Badge>
-                                            ))}
-                                        </div>
-                                        <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
-                                            {exp.highlights.map((highlight, index) => (
-                                                <li key={index}>{highlight}</li>
-                                            ))}
-                                        </ul>
-                                    </CardContent>
-                                </Card>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Map View in between */}
-                    <MapView />
-
-                    {/* Taiwan Experience Section */}
-                    <div className="space-y-6">
-                        <h2 className="text-2xl font-semibold flex items-center gap-2">
-                            <Building className="h-6 w-6" />
-                            Experience in Taiwan
-                        </h2>
-                        <div className="space-y-8">
-                            {taiwanExperiences.map((exp) => (
-                                <Card key={exp.company} className="bg-muted/50">
-                                    <CardHeader>
-                                        <div className="flex justify-between items-start">
-                                            <div>
-                                                <CardTitle className="text-lg flex items-center gap-2">
-                                                    {exp.company === "SAP Concur" && <Building2 className="h-5 w-5" />}
-                                                    {exp.company === "STRV" && <Code2 className="h-5 w-5" />}
-                                                    {exp.company === "Zion Blockchain Ltd." && <Coins className="h-5 w-5" />}
-                                                    {exp.company === "Viscovery" && <Video className="h-5 w-5" />}
-                                                    {exp.company === "EZTABLE" && <Utensils className="h-5 w-5" />}
-                                                    {exp.company === "Mobile01" && <MessagesSquare className="h-5 w-5" />}
-                                                    {exp.role}
-                                                </CardTitle>
-                                                <CardDescription className="mt-1">
-                                                    {exp.company} • {exp.location}
-                                                </CardDescription>
-                                            </div>
-                                            <Badge variant="secondary">{exp.period}</Badge>
-                                        </div>
-                                    </CardHeader>
-                                    <CardContent className="space-y-4">
-                                        <div className="flex flex-wrap gap-2">
-                                            {exp.skills.map((skill) => (
-                                                <Badge key={skill} variant="outline" className="flex items-center gap-1">
-                                                    {skill === "Swift" && (
-                                                        <Image
-                                                            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/swift/swift-original.svg"
-                                                            alt="Swift"
-                                                            width={16}
-                                                            height={16}
-                                                        />
-                                                    )}
-                                                    {skill === "React" && (
-                                                        <Image
-                                                            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg"
-                                                            alt="React"
-                                                            width={16}
-                                                            height={16}
-                                                        />
-                                                    )}
-                                                    {skill}
-                                                </Badge>
-                                            ))}
-                                        </div>
-                                        <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
-                                            {exp.highlights.map((highlight, index) => (
-                                                <li key={index}>{highlight}</li>
-                                            ))}
-                                        </ul>
-                                    </CardContent>
-                                </Card>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-
-                <div className="space-y-6">
-                    {techStackOrder.map(category =>
-                        categorizedRepos[category]?.length > 0 && (
-                            <div key={category} className="space-y-4">
-                                <h3 className="text-lg font-semibold flex items-center gap-2">
-                                    {category === 'iOS' && (
-                                        <Image
-                                            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/swift/swift-original.svg"
-                                            alt="iOS"
-                                            width={24}
-                                            height={24}
-                                        />
-                                    )}
-                                    {category === 'Frontend' && (
-                                        <Image
-                                            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg"
-                                            alt="Frontend"
-                                            width={24}
-                                            height={24}
-                                        />
-                                    )}
-                                    {category === 'Backend' && (
-                                        <Image
-                                            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg"
-                                            alt="Backend"
-                                            width={24}
-                                            height={24}
-                                        />
-                                    )}
-                                    {category}
-                                </h3>
-                                <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                                    {categorizedRepos[category].map((repo) => (
-                                        <Link
-                                            key={repo.name}
-                                            href={repo.html_url}
-                                            target="_blank"
-                                            className="block group"
-                                        >
-                                            <Card className="h-full bg-muted/50 hover:bg-muted/70 transition-colors border border-border">
-                                                <CardHeader className="p-4">
-                                                    <CardTitle className="text-sm group-hover:text-primary transition-colors">
-                                                        {repo.name}
+            <CardContent>
+                <div className="grid grid-cols-1 lg:grid-cols-[70fr_30fr] gap-8">
+                    <div className="space-y-8">
+                        <div className="space-y-6">
+                            <h2 className="text-2xl font-semibold flex items-center gap-2">
+                                <Building className="h-6 w-6" />
+                                Experience in Prague
+                            </h2>
+                            <div className="space-y-8">
+                                {pragueExperiences.map((exp) => (
+                                    <Card key={exp.company} className="bg-muted/50">
+                                        <CardHeader>
+                                            <div className="flex justify-between items-start">
+                                                <div>
+                                                    <CardTitle className="text-lg flex items-center gap-2">
+                                                        {exp.company === "SAP Concur" && <Building2 className="h-5 w-5" />}
+                                                        {exp.company === "STRV" && <Code2 className="h-5 w-5" />}
+                                                        {exp.company === "Zion Blockchain Ltd." && <Coins className="h-5 w-5" />}
+                                                        {exp.company === "Viscovery" && <Video className="h-5 w-5" />}
+                                                        {exp.company === "EZTABLE" && <Utensils className="h-5 w-5" />}
+                                                        {exp.company === "Mobile01" && <MessagesSquare className="h-5 w-5" />}
+                                                        {exp.role}
                                                     </CardTitle>
-                                                    <CardDescription className="text-xs line-clamp-2">
-                                                        {repo.description || "No description provided"}
+                                                    <CardDescription className="mt-1">
+                                                        {exp.company} • {exp.location}
                                                     </CardDescription>
-                                                    {repo.topics && repo.topics.length > 0 && (
-                                                        <div className="flex flex-wrap gap-1 mt-2">
-                                                            {repo.topics.slice(0, 3).map((topic: string) => (
-                                                                <Badge
-                                                                    key={topic}
-                                                                    variant="secondary"
-                                                                    className="text-[10px]"
-                                                                >
-                                                                    {topic}
-                                                                </Badge>
-                                                            ))}
-                                                        </div>
-                                                    )}
-                                                </CardHeader>
-                                                <CardContent className="p-4 pt-0">
-                                                    <div className="flex justify-between text-xs text-muted-foreground">
-                                                        {repo.language && (
-                                                            <Badge variant="outline">{repo.language}</Badge>
+                                                </div>
+                                                <Badge variant="secondary">{exp.period}</Badge>
+                                            </div>
+                                        </CardHeader>
+                                        <CardContent className="space-y-4">
+                                            <div className="flex flex-wrap gap-2">
+                                                {exp.skills.map((skill) => (
+                                                    <Badge key={skill} variant="outline" className="flex items-center gap-1">
+                                                        {skill === "Swift" && (
+                                                            <Image
+                                                                src="https://raw.githubusercontent.com/devicons/devicon/master/icons/swift/swift-original.svg"
+                                                                alt="Swift"
+                                                                width={16}
+                                                                height={16}
+                                                            />
                                                         )}
-                                                        <div className="flex items-center gap-3">
-                                                            <span className="flex items-center gap-1">
-                                                                <Star className="h-3 w-3" /> {repo.stargazers_count}
-                                                            </span>
-                                                            <span className="flex items-center gap-1">
-                                                                <GitFork className="h-3 w-3" /> {repo.forks_count}
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                    <div className="text-xs text-muted-foreground mt-2">
-                                                        Updated {formatDistanceToNow(new Date(repo.pushed_at), { addSuffix: true })}
-                                                    </div>
-                                                </CardContent>
-                                            </Card>
-                                        </Link>
-                                    ))}
-                                </div>
+                                                        {skill === "React" && (
+                                                            <Image
+                                                                src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg"
+                                                                alt="React"
+                                                                width={16}
+                                                                height={16}
+                                                            />
+                                                        )}
+                                                        {skill}
+                                                    </Badge>
+                                                ))}
+                                            </div>
+                                            <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
+                                                {exp.highlights.map((highlight, index) => (
+                                                    <li key={index}>{highlight}</li>
+                                                ))}
+                                            </ul>
+                                        </CardContent>
+                                    </Card>
+                                ))}
                             </div>
-                        )
-                    )}
+                        </div>
+
+                        <MapView />
+
+                        <div className="space-y-6">
+                            <h2 className="text-2xl font-semibold flex items-center gap-2">
+                                <Building className="h-6 w-6" />
+                                Experience in Taiwan
+                            </h2>
+                            <div className="space-y-8">
+                                {taiwanExperiences.map((exp) => (
+                                    <Card key={exp.company} className="bg-muted/50">
+                                        <CardHeader>
+                                            <div className="flex justify-between items-start">
+                                                <div>
+                                                    <CardTitle className="text-lg flex items-center gap-2">
+                                                        {exp.company === "SAP Concur" && <Building2 className="h-5 w-5" />}
+                                                        {exp.company === "STRV" && <Code2 className="h-5 w-5" />}
+                                                        {exp.company === "Zion Blockchain Ltd." && <Coins className="h-5 w-5" />}
+                                                        {exp.company === "Viscovery" && <Video className="h-5 w-5" />}
+                                                        {exp.company === "EZTABLE" && <Utensils className="h-5 w-5" />}
+                                                        {exp.company === "Mobile01" && <MessagesSquare className="h-5 w-5" />}
+                                                        {exp.role}
+                                                    </CardTitle>
+                                                    <CardDescription className="mt-1">
+                                                        {exp.company} • {exp.location}
+                                                    </CardDescription>
+                                                </div>
+                                                <Badge variant="secondary">{exp.period}</Badge>
+                                            </div>
+                                        </CardHeader>
+                                        <CardContent className="space-y-4">
+                                            <div className="flex flex-wrap gap-2">
+                                                {exp.skills.map((skill) => (
+                                                    <Badge key={skill} variant="outline" className="flex items-center gap-1">
+                                                        {skill === "Swift" && (
+                                                            <Image
+                                                                src="https://raw.githubusercontent.com/devicons/devicon/master/icons/swift/swift-original.svg"
+                                                                alt="Swift"
+                                                                width={16}
+                                                                height={16}
+                                                            />
+                                                        )}
+                                                        {skill === "React" && (
+                                                            <Image
+                                                                src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg"
+                                                                alt="React"
+                                                                width={16}
+                                                                height={16}
+                                                            />
+                                                        )}
+                                                        {skill}
+                                                    </Badge>
+                                                ))}
+                                            </div>
+                                            <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
+                                                {exp.highlights.map((highlight, index) => (
+                                                    <li key={index}>{highlight}</li>
+                                                ))}
+                                            </ul>
+                                        </CardContent>
+                                    </Card>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="space-y-6">
+                        <SkillsSection />
+
+                        <Card className="bg-muted/50">
+                            <CardHeader>
+                                <CardTitle className="text-sm">GitHub Activity</CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <div className="space-y-4">
+                                    <div className="flex items-center justify-between">
+                                        <span className="text-sm text-muted-foreground">Public Repos</span>
+                                        <span className="font-medium">{user.public_repos}</span>
+                                    </div>
+                                    <div className="flex items-center justify-between">
+                                        <span className="text-sm text-muted-foreground">Total Stars</span>
+                                        <span className="font-medium">{totalStars}</span>
+                                    </div>
+                                    <div className="flex items-center justify-between">
+                                        <span className="text-sm text-muted-foreground">Followers</span>
+                                        <span className="font-medium">{user.followers}</span>
+                                    </div>
+                                </div>
+                            </CardContent>
+                        </Card>
+
+                        <div className="space-y-6">
+                            {techStackOrder.map(category =>
+                                categorizedRepos[category]?.length > 0 && (
+                                    <Card key={category} className="bg-muted/50">
+                                        <CardHeader>
+                                            <CardTitle className="text-sm flex items-center gap-2">
+                                                {category === 'iOS' && (
+                                                    <Image
+                                                        src="https://raw.githubusercontent.com/devicons/devicon/master/icons/swift/swift-original.svg"
+                                                        alt="iOS"
+                                                        width={24}
+                                                        height={24}
+                                                    />
+                                                )}
+                                                {category === 'Frontend' && (
+                                                    <Image
+                                                        src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg"
+                                                        alt="Frontend"
+                                                        width={24}
+                                                        height={24}
+                                                    />
+                                                )}
+                                                {category === 'Backend' && (
+                                                    <Image
+                                                        src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg"
+                                                        alt="Backend"
+                                                        width={24}
+                                                        height={24}
+                                                    />
+                                                )}
+                                                {category} Projects
+                                            </CardTitle>
+                                        </CardHeader>
+                                        <CardContent>
+                                            <div className="space-y-2">
+                                                {categorizedRepos[category].slice(0, 3).map((repo) => (
+                                                    <Link
+                                                        key={repo.name}
+                                                        href={repo.html_url}
+                                                        target="_blank"
+                                                        className="block group"
+                                                    >
+                                                        <div className="p-2 rounded-md hover:bg-muted transition-colors">
+                                                            <div className="font-medium text-sm group-hover:text-primary">
+                                                                {repo.name}
+                                                            </div>
+                                                            <div className="text-xs text-muted-foreground mt-1">
+                                                                {repo.stargazers_count} ★
+                                                            </div>
+                                                        </div>
+                                                    </Link>
+                                                ))}
+                                            </div>
+                                        </CardContent>
+                                    </Card>
+                                )
+                            )}
+                        </div>
+                    </div>
                 </div>
             </CardContent>
         </Card>
