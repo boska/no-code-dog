@@ -14,7 +14,7 @@ const COLORS = ['#FF6B6B',
 
 export function GithubCharts({ languageData, repoStats }: GithubChartsProps) {
     return (
-        <div className="grid gap-4 md:grid-cols-2">
+        <div className="grid gap-4 md:grid-cols-[70fr_30fr]">
             <Card className="bg-muted/50">
                 <CardHeader>
                     <CardTitle className="text-sm">Languages Distribution</CardTitle>

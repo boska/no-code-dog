@@ -111,6 +111,10 @@ const experiences: Experience[] = [
     }
 ];
 
+// First, split experiences into two groups
+const pragueExperiences = experiences.filter(exp => exp.location.includes('Prague'));
+const taiwanExperiences = experiences.filter(exp => exp.location.includes('Taiwan'));
+
 export async function GithubCard() {
     const { user, repos } = await getGithubProfile('boska');
 
@@ -139,6 +143,8 @@ export async function GithubCard() {
         stars: repo.stargazers_count,
         forks: repo.forks_count
     }));
+
+    const totalStars = repos.reduce((sum, repo) => sum + repo.stargazers_count, 0);
 
     return (
         <Card className="max-w-5xl mx-auto bg-card/30 backdrop-blur-sm border border-border">
@@ -189,8 +195,8 @@ export async function GithubCard() {
                     </div>
                     <div className="flex gap-6 text-sm">
                         <div className="flex items-center gap-1">
-                            <Users className="h-4 w-4" />
-                            <span>{user.followers} followers</span>
+                            <Star className="h-4 w-4" />
+                            <span>{totalStars} stars</span>
                         </div>
                         <div className="flex items-center gap-1">
                             <Github className="h-4 w-4" />
@@ -206,69 +212,136 @@ export async function GithubCard() {
                     repoStats={repoStats}
                 />
 
-                <div className="space-y-6">
-                    <h2 className="text-2xl font-semibold flex items-center gap-2">
-                        <Building className="h-6 w-6" />
-                        Professional Experience
-                    </h2>
-                    <div className="space-y-8">
-                        {experiences.map((exp) => (
-                            <Card key={exp.company} className="bg-muted/50">
-                                <CardHeader>
-                                    <div className="flex justify-between items-start">
-                                        <div>
-                                            <CardTitle className="text-lg flex items-center gap-2">
-                                                {exp.company === "SAP Concur" && <Building2 className="h-5 w-5" />}
-                                                {exp.company === "STRV" && <Code2 className="h-5 w-5" />}
-                                                {exp.company === "Zion Blockchain Ltd." && <Coins className="h-5 w-5" />}
-                                                {exp.company === "Viscovery" && <Video className="h-5 w-5" />}
-                                                {exp.company === "EZTABLE" && <Utensils className="h-5 w-5" />}
-                                                {exp.company === "Mobile01" && <MessagesSquare className="h-5 w-5" />}
-                                                {exp.role}
-                                            </CardTitle>
-                                            <CardDescription className="mt-1">
-                                                {exp.company} • {exp.location}
-                                            </CardDescription>
+                <div className="space-y-8">
+                    {/* Prague Experience Section */}
+                    <div className="space-y-6">
+                        <h2 className="text-2xl font-semibold flex items-center gap-2">
+                            <Building className="h-6 w-6" />
+                            Experience in Prague
+                        </h2>
+                        <div className="space-y-8">
+                            {pragueExperiences.map((exp) => (
+                                <Card key={exp.company} className="bg-muted/50">
+                                    <CardHeader>
+                                        <div className="flex justify-between items-start">
+                                            <div>
+                                                <CardTitle className="text-lg flex items-center gap-2">
+                                                    {exp.company === "SAP Concur" && <Building2 className="h-5 w-5" />}
+                                                    {exp.company === "STRV" && <Code2 className="h-5 w-5" />}
+                                                    {exp.company === "Zion Blockchain Ltd." && <Coins className="h-5 w-5" />}
+                                                    {exp.company === "Viscovery" && <Video className="h-5 w-5" />}
+                                                    {exp.company === "EZTABLE" && <Utensils className="h-5 w-5" />}
+                                                    {exp.company === "Mobile01" && <MessagesSquare className="h-5 w-5" />}
+                                                    {exp.role}
+                                                </CardTitle>
+                                                <CardDescription className="mt-1">
+                                                    {exp.company} • {exp.location}
+                                                </CardDescription>
+                                            </div>
+                                            <Badge variant="secondary">{exp.period}</Badge>
                                         </div>
-                                        <Badge variant="secondary">{exp.period}</Badge>
-                                    </div>
-                                </CardHeader>
-                                <CardContent className="space-y-4">
-                                    <div className="flex flex-wrap gap-2">
-                                        {exp.skills.map((skill) => (
-                                            <Badge key={skill} variant="outline" className="flex items-center gap-1">
-                                                {skill === "Swift" && (
-                                                    <Image
-                                                        src="https://raw.githubusercontent.com/devicons/devicon/master/icons/swift/swift-original.svg"
-                                                        alt="Swift"
-                                                        width={16}
-                                                        height={16}
-                                                    />
-                                                )}
-                                                {skill === "React" && (
-                                                    <Image
-                                                        src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg"
-                                                        alt="React"
-                                                        width={16}
-                                                        height={16}
-                                                    />
-                                                )}
-                                                {skill}
-                                            </Badge>
-                                        ))}
-                                    </div>
-                                    <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
-                                        {exp.highlights.map((highlight, index) => (
-                                            <li key={index}>{highlight}</li>
-                                        ))}
-                                    </ul>
-                                </CardContent>
-                            </Card>
-                        ))}
+                                    </CardHeader>
+                                    <CardContent className="space-y-4">
+                                        <div className="flex flex-wrap gap-2">
+                                            {exp.skills.map((skill) => (
+                                                <Badge key={skill} variant="outline" className="flex items-center gap-1">
+                                                    {skill === "Swift" && (
+                                                        <Image
+                                                            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/swift/swift-original.svg"
+                                                            alt="Swift"
+                                                            width={16}
+                                                            height={16}
+                                                        />
+                                                    )}
+                                                    {skill === "React" && (
+                                                        <Image
+                                                            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg"
+                                                            alt="React"
+                                                            width={16}
+                                                            height={16}
+                                                        />
+                                                    )}
+                                                    {skill}
+                                                </Badge>
+                                            ))}
+                                        </div>
+                                        <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
+                                            {exp.highlights.map((highlight, index) => (
+                                                <li key={index}>{highlight}</li>
+                                            ))}
+                                        </ul>
+                                    </CardContent>
+                                </Card>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Map View in between */}
+                    <MapView />
+
+                    {/* Taiwan Experience Section */}
+                    <div className="space-y-6">
+                        <h2 className="text-2xl font-semibold flex items-center gap-2">
+                            <Building className="h-6 w-6" />
+                            Experience in Taiwan
+                        </h2>
+                        <div className="space-y-8">
+                            {taiwanExperiences.map((exp) => (
+                                <Card key={exp.company} className="bg-muted/50">
+                                    <CardHeader>
+                                        <div className="flex justify-between items-start">
+                                            <div>
+                                                <CardTitle className="text-lg flex items-center gap-2">
+                                                    {exp.company === "SAP Concur" && <Building2 className="h-5 w-5" />}
+                                                    {exp.company === "STRV" && <Code2 className="h-5 w-5" />}
+                                                    {exp.company === "Zion Blockchain Ltd." && <Coins className="h-5 w-5" />}
+                                                    {exp.company === "Viscovery" && <Video className="h-5 w-5" />}
+                                                    {exp.company === "EZTABLE" && <Utensils className="h-5 w-5" />}
+                                                    {exp.company === "Mobile01" && <MessagesSquare className="h-5 w-5" />}
+                                                    {exp.role}
+                                                </CardTitle>
+                                                <CardDescription className="mt-1">
+                                                    {exp.company} • {exp.location}
+                                                </CardDescription>
+                                            </div>
+                                            <Badge variant="secondary">{exp.period}</Badge>
+                                        </div>
+                                    </CardHeader>
+                                    <CardContent className="space-y-4">
+                                        <div className="flex flex-wrap gap-2">
+                                            {exp.skills.map((skill) => (
+                                                <Badge key={skill} variant="outline" className="flex items-center gap-1">
+                                                    {skill === "Swift" && (
+                                                        <Image
+                                                            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/swift/swift-original.svg"
+                                                            alt="Swift"
+                                                            width={16}
+                                                            height={16}
+                                                        />
+                                                    )}
+                                                    {skill === "React" && (
+                                                        <Image
+                                                            src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg"
+                                                            alt="React"
+                                                            width={16}
+                                                            height={16}
+                                                        />
+                                                    )}
+                                                    {skill}
+                                                </Badge>
+                                            ))}
+                                        </div>
+                                        <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
+                                            {exp.highlights.map((highlight, index) => (
+                                                <li key={index}>{highlight}</li>
+                                            ))}
+                                        </ul>
+                                    </CardContent>
+                                </Card>
+                            ))}
+                        </div>
                     </div>
                 </div>
-
-                <MapView />
 
                 <div className="space-y-6">
                     {techStackOrder.map(category =>
