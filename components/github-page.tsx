@@ -8,6 +8,7 @@ import { formatDistanceToNow } from "date-fns";
 import { MapView } from './map-view';
 import { GithubCharts } from './github-charts';
 import Image from 'next/image';
+import { SkillsSection } from "./skills-section"
 
 // Define tech stack categories with specific order
 const techStackOrder = ['iOS', 'Frontend', 'Backend', 'Other'] as const;
@@ -207,10 +208,7 @@ export async function GithubCard() {
             </CardHeader>
 
             <CardContent className="space-y-8">
-                <GithubCharts
-                    languageData={languageData}
-                    repoStats={repoStats}
-                />
+                <SkillsSection />
 
                 <div className="space-y-8">
                     {/* Prague Experience Section */}
