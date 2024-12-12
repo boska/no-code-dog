@@ -32,7 +32,7 @@ export default function RootLayout({
                   href="/"
                   className="text-lg font-semibold hover:text-primary transition-colors"
                 >
-                  Yang Lee
+                  洋
                 </Link>
                 <ThemeSwitcher />
               </div>

@@ -159,7 +159,7 @@ export async function GithubCard() {
                         <div>
                             <CardTitle className="flex items-center gap-2">
                                 <Github className="h-5 w-5" />
-                                {user.login}
+                                Yang Lee
                             </CardTitle>
                             <CardDescription className="mt-2">{user.bio}</CardDescription>
                             <div className="flex flex-wrap gap-4 mt-4 text-sm text-muted-foreground">
@@ -211,10 +211,9 @@ export async function GithubCard() {
                 <div className="grid grid-cols-1 lg:grid-cols-[70fr_30fr] gap-8">
                     <div className="space-y-8">
                         <div className="space-y-6">
-                            <h2 className="text-2xl font-semibold flex items-center gap-2">
-                                <Building className="h-6 w-6" />
-                                Experience in Prague
-                            </h2>
+                            <h3 className="text-xl font-semibold flex items-center gap-2">
+                                Experience
+                            </h3>
                             <div className="space-y-8">
                                 {pragueExperiences.map((exp) => (
                                     <Card key={exp.company} className="bg-muted/50">
@@ -275,10 +274,6 @@ export async function GithubCard() {
                         <MapView />
 
                         <div className="space-y-6">
-                            <h2 className="text-2xl font-semibold flex items-center gap-2">
-                                <Building className="h-6 w-6" />
-                                Experience in Taiwan
-                            </h2>
                             <div className="space-y-8">
                                 {taiwanExperiences.map((exp) => (
                                     <Card key={exp.company} className="bg-muted/50">
