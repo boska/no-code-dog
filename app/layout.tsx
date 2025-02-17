@@ -5,7 +5,9 @@ import HeaderAuth from "@/components/header-auth";
 import { hasEnvVars } from "@/utils/supabase/check-env-vars";
 import "./globals.css";
 import Link from "next/link";
-import { Analytics } from "@vercel/analytics/react"
+import { Analytics } from "@vercel/analytics/react";
+import { FloatingChat } from '@/components/chat/floating-chat';
+
 export const metadata = {
   title: "Yang Lee (boska) a github visualizer",
   description: "View GitHub profile statistics, contributions, and repository information",
@@ -25,32 +27,35 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <nav className="fixed top-0 w-full z-50 bg-gradient-to-b from-background/70 to-transparent backdrop-blur-sm border-b border-border/50">
-            <div className="w-full max-w-7xl mx-auto flex justify-between items-center p-4">
-              <div className="flex items-center gap-4">
-                <Link
-                  href="/"
-                  className="text-lg font-semibold hover:text-primary transition-colors"
-                >
-                  Yang Lee
-                </Link>
-                <Link
-                  href="/portfolio"
-                  className="text-lg hover:text-primary transition-colors"
-                >
-                  Portfolio 作品
-                </Link>
-                <ThemeSwitcher />
+          <div className="relative flex min-h-screen flex-col">
+            <nav className="fixed top-0 w-full z-50 bg-gradient-to-b from-background/70 to-transparent backdrop-blur-sm border-b border-border/50">
+              <div className="w-full max-w-7xl mx-auto flex justify-between items-center p-4">
+                <div className="flex items-center gap-4">
+                  <Link
+                    href="/"
+                    className="text-lg font-semibold hover:text-primary transition-colors"
+                  >
+                    Yang Lee
+                  </Link>
+                  <Link
+                    href="/portfolio"
+                    className="text-lg hover:text-primary transition-colors"
+                  >
+                    Portfolio 作品
+                  </Link>
+                  <ThemeSwitcher />
+                </div>
+                <div>
+                  {!hasEnvVars ? null : <HeaderAuth />}
+                </div>
               </div>
-              <div>
-                {!hasEnvVars ? null : <HeaderAuth />}
-              </div>
-            </div>
-          </nav>
-          <main className="min-h-screen">
-            {children}
-          </main>
-          <Analytics />
+            </nav>
+            <main className="min-h-screen">
+              {children}
+            </main>
+            <FloatingChat />
+            <Analytics />
+          </div>
         </ThemeProvider>
       </body>
     </html>
