@@ -32,7 +32,13 @@ export default function RootLayout({
                   href="/"
                   className="text-lg font-semibold hover:text-primary transition-colors"
                 >
-                  洋
+                  Yang Lee
+                </Link>
+                <Link
+                  href="/portfolio"
+                  className="text-lg hover:text-primary transition-colors"
+                >
+                  Portfolio 作品
                 </Link>
                 <ThemeSwitcher />
               </div>
