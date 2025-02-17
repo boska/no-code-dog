@@ -56,7 +56,7 @@ export function FloatingChat() {
             initial={{ opacity: 0, scale: 0.8, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 20 }}
-            className="bg-background border rounded-lg shadow-lg w-[360px] h-[480px] flex flex-col"
+            className="bg-background border rounded-lg shadow-lg w-[calc(100vw-32px)] h-[80vh] md:w-[360px] md:h-[480px] flex flex-col max-w-[500px]"
           >
             {/* Header */}
             <div className="p-4 border-b flex items-center justify-between">
@@ -80,7 +80,7 @@ export function FloatingChat() {
                   className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
                   <div
-                    className={`max-w-[80%] rounded-lg px-4 py-2 ${
+                    className={`max-w-[85%] rounded-lg px-4 py-2 ${
                       message.role === 'user'
                         ? 'bg-primary text-primary-foreground ml-4'
                         : 'bg-muted mr-4'
@@ -105,11 +105,11 @@ export function FloatingChat() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Ask me anything..."
-                className="flex-1 px-3 py-2 rounded-md border bg-background"
+                className="flex-1 px-3 py-2 text-sm md:text-base rounded-md border bg-background"
               />
               <button
                 type="submit"
-                className="px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90"
+                className="px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 whitespace-nowrap text-sm md:text-base"
               >
                 Send
               </button>
@@ -121,9 +121,9 @@ export function FloatingChat() {
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.8, opacity: 0 }}
             onClick={() => setIsOpen(true)}
-            className="bg-primary text-primary-foreground rounded-full p-4 shadow-lg hover:bg-primary/90"
+            className="bg-primary text-primary-foreground rounded-full p-3 md:p-4 shadow-lg hover:bg-primary/90"
           >
-            <MessageCircle className="h-6 w-6" />
+            <MessageCircle className="h-5 w-5 md:h-6 md:w-6" />
           </motion.button>
         )}
       </AnimatePresence>
