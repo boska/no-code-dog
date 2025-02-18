@@ -172,7 +172,7 @@ const ProjectGallery = ({ screenshots }: { screenshots: Screenshot[] }) => {
 
 export default function PortfolioPage() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
       {portfolioItems.map((item) => (
         <motion.div
           key={item.id}
@@ -185,16 +185,16 @@ export default function PortfolioPage() {
           }}
           className="group bg-card hover:bg-[#419388]/5 rounded-xl shadow-sm hover:shadow-md overflow-hidden transition-all duration-300"
         >
-          <div className="p-4">
+          <div className="p-3 sm:p-4">
             {item.id === 0 ? (
-              <div className="relative w-full h-[240px] rounded-lg overflow-hidden bg-gradient-to-br from-[#419388]/10 via-[#419388]/5 to-background">
+              <div className="relative w-full h-[200px] sm:h-[240px] rounded-lg overflow-hidden bg-gradient-to-br from-[#419388]/10 via-[#419388]/5 to-background">
                 <div className="absolute inset-0 bg-grid-white/10 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))] dark:bg-grid-black/10" />
                 <motion.div 
                   className="absolute inset-0 flex items-center justify-center"
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <div className="relative w-32 h-32 md:w-36 md:h-36">
+                  <div className="relative w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36">
                     <Image
                       src={item.screenshots[0].url}
                       alt={item.screenshots[0].alt}
@@ -216,47 +216,47 @@ export default function PortfolioPage() {
             )}
           </div>
 
-          <div className="px-6 pb-6">
-            <div className="mb-4">
-              <h3 className="text-2xl font-bold mb-3 group-hover:text-[#419388] transition-colors">{item.title}</h3>
-              <p className="text-base text-muted-foreground/90 leading-relaxed">{item.description}</p>
-              <p className="text-base text-muted-foreground/80 leading-relaxed mt-2">{item.descriptionZh}</p>
+          <div className="px-3 sm:px-6 pb-4 sm:pb-6">
+            <div className="mb-3 sm:mb-4">
+              <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 group-hover:text-[#419388] transition-colors">{item.title}</h3>
+              <p className="text-sm sm:text-base text-muted-foreground/90 leading-relaxed">{item.description}</p>
+              <p className="text-sm sm:text-base text-muted-foreground/80 leading-relaxed mt-2">{item.descriptionZh}</p>
             </div>
 
-            <div className="flex flex-wrap gap-2 mb-5">
+            <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-4 sm:mb-5">
               {item.tags.map((tag) => (
                 <Badge 
                   key={tag} 
                   variant="secondary" 
-                  className="text-xs px-2.5 py-0.5 bg-muted/50 hover:bg-[#419388]/10 transition-colors"
+                  className="text-xs px-2 sm:px-2.5 py-0.5 bg-muted/50 hover:bg-[#419388]/10 transition-colors"
                 >
                   {tag}
                 </Badge>
               ))}
             </div>
 
-            <div className="flex gap-3">
+            <div className="flex gap-2 sm:gap-3">
               {item.id === 0 ? (
                 <>
                   <Button
                     variant="outline"
                     size="sm"
-                    className="w-full text-sm h-10 font-medium hover:bg-[#333333] hover:text-white transition-all duration-300"
+                    className="w-full text-xs sm:text-sm h-9 sm:h-10 font-medium hover:bg-[#333333] hover:text-white transition-all duration-300"
                     asChild
                   >
                     <a href={item.githubUrl} target="_blank" rel="noopener noreferrer">
-                      <Github className="mr-2 h-4 w-4" />
+                      <Github className="mr-1.5 sm:mr-2 h-3.5 sm:h-4 w-3.5 sm:w-4" />
                       GitHub
                     </a>
                   </Button>
                   <Button
                     variant="outline"
                     size="sm"
-                    className="w-full text-sm h-10 font-medium hover:bg-[#419388] hover:text-white transition-all duration-300"
+                    className="w-full text-xs sm:text-sm h-9 sm:h-10 font-medium hover:bg-[#419388] hover:text-white transition-all duration-300"
                     asChild
                   >
                     <a href={item.liveUrl} target="_blank" rel="noopener noreferrer">
-                      <Linkedin className="mr-2 h-4 w-4" />
+                      <Linkedin className="mr-1.5 sm:mr-2 h-3.5 sm:h-4 w-3.5 sm:w-4" />
                       LinkedIn
                     </a>
                   </Button>
@@ -267,11 +267,11 @@ export default function PortfolioPage() {
                     <Button
                       variant="outline"
                       size="sm"
-                      className="w-full text-sm h-10 font-medium hover:bg-[#333333] hover:text-white transition-all duration-300"
+                      className="w-full text-xs sm:text-sm h-9 sm:h-10 font-medium hover:bg-[#333333] hover:text-white transition-all duration-300"
                       asChild
                     >
                       <a href={item.githubUrl} target="_blank" rel="noopener noreferrer">
-                        <Github className="mr-2 h-4 w-4" />
+                        <Github className="mr-1.5 sm:mr-2 h-3.5 sm:h-4 w-3.5 sm:w-4" />
                         GitHub
                       </a>
                     </Button>
@@ -280,19 +280,19 @@ export default function PortfolioPage() {
                     <Button
                       variant="outline"
                       size="sm"
-                      className="w-full text-sm h-10 font-medium hover:bg-[#419388] hover:text-white transition-all duration-300"
+                      className="w-full text-xs sm:text-sm h-9 sm:h-10 font-medium hover:bg-[#419388] hover:text-white transition-all duration-300"
                       asChild
                     >
                       <a href={item.liveUrl} target="_blank" rel="noopener noreferrer">
                         {item.liveUrl.includes('apps.apple.com') ? (
                           <>
-                            <Apple className="mr-2 h-4 w-4" />
-                            Download on the AppStore
+                            <Apple className="mr-1.5 sm:mr-2 h-3.5 sm:h-4 w-3.5 sm:w-4" />
+                            App Store
                           </>
                         ) : (
                           <>
-                            <ExternalLink className="mr-2 h-4 w-4" />
-                            Visit Website
+                            <ExternalLink className="mr-1.5 sm:mr-2 h-3.5 sm:h-4 w-3.5 sm:w-4" />
+                            Website
                           </>
                         )}
                       </a>

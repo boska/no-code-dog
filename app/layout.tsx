@@ -29,11 +29,11 @@ export default function RootLayout({
         >
           <div className="relative">
             <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-[#419388]/10">
-              <div className="w-full max-w-7xl mx-auto flex justify-end items-center px-6 py-3">
+              <div className="w-full max-w-7xl mx-auto flex justify-end items-center px-3 sm:px-6 py-3">
                 <ThemeSwitcher />
               </div>
             </nav>
-            <main className="relative pt-16 pb-16 px-4 max-w-7xl mx-auto">
+            <main className="relative pt-16 pb-16 px-2 sm:px-4 max-w-7xl mx-auto">
               {children}
             </main>
             <FloatingChat />
