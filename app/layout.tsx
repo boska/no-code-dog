@@ -9,8 +9,8 @@ import { Analytics } from "@vercel/analytics/react";
 import { FloatingChat } from '@/components/chat/floating-chat';
 
 export const metadata = {
-  title: "Yang Lee (boska) a github visualizer",
-  description: "View GitHub profile statistics, contributions, and repository information",
+  title: "Yang Lee - Senior iOS Engineer | Portfolio",
+  description: "Senior iOS Engineer with expertise in Swift, React, and TypeScript. View my portfolio of mobile and web applications.",
 };
 
 export default function RootLayout({
@@ -22,6 +22,7 @@ export default function RootLayout({
     <html lang="zh" className={GeistSans.className} suppressHydrationWarning>
       <body className="bg-background text-foreground">
         <ThemeProvider
+          scriptProps={{ 'data-cfasync': 'false' }}
           attribute="class"
           defaultTheme="system"
           enableSystem
