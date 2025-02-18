@@ -5,7 +5,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/componen
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { motion } from 'framer-motion'
-import { ExternalLink, Github, ChevronLeft, ChevronRight, Apple } from 'lucide-react'
+import { ExternalLink, Github, ChevronLeft, ChevronRight, Apple, Mail, Linkedin, MapPin } from 'lucide-react'
 import { useState } from 'react'
 import { cn } from '@/lib/utils'
 
@@ -26,6 +26,18 @@ interface PortfolioItem {
 }
 
 const portfolioItems: PortfolioItem[] = [
+  {
+    id: 0,
+    title: "Yang Lee",
+    description: "Experienced mobile developer specializing in iOS development with a strong track record of delivering high-quality applications. Passionate about creating intuitive user experiences and solving complex technical challenges.",
+    descriptionZh: "資深 iOS 開發工程師，專注於開發高品質的行動應用程式。致力於創造直覺的使用者體驗和解決複雜的技術挑戰。",
+    screenshots: [
+      { url: '/avatar.png', alt: 'Profile Photo' }
+    ],
+    tags: ["iOS Development", "Swift", "SwiftUI", "Objective-C", "React", "TypeScript", "Next.js"],
+    githubUrl: "https://github.com/yourusername",
+    liveUrl: "https://linkedin.com/in/yourusername"
+  },
   {
     id: 1,
     title: 'Bonder iOS',
@@ -160,69 +172,140 @@ const ProjectGallery = ({ screenshots }: { screenshots: Screenshot[] }) => {
 
 export default function PortfolioPage() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {portfolioItems.map((item) => (
-        <div
+        <motion.div
           key={item.id}
-          className="bg-card rounded-lg shadow-sm overflow-hidden"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ 
+            duration: 0.4, 
+            delay: item.id * 0.1,
+            ease: [0.22, 1, 0.36, 1]
+          }}
+          className="group bg-card hover:bg-[#419388]/5 rounded-xl shadow-sm hover:shadow-md overflow-hidden transition-all duration-300"
         >
-          <div className="p-3">
-            <ProjectGallery screenshots={item.screenshots} />
+          <div className="p-4">
+            {item.id === 0 ? (
+              <div className="relative w-full h-[240px] rounded-lg overflow-hidden bg-gradient-to-br from-[#419388]/10 via-[#419388]/5 to-background">
+                <div className="absolute inset-0 bg-grid-white/10 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))] dark:bg-grid-black/10" />
+                <motion.div 
+                  className="absolute inset-0 flex items-center justify-center"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <div className="relative w-32 h-32 md:w-36 md:h-36">
+                    <Image
+                      src={item.screenshots[0].url}
+                      alt={item.screenshots[0].alt}
+                      fill
+                      className="rounded-full object-cover border-4 border-background shadow-md"
+                      priority
+                    />
+                  </div>
+                </motion.div>
+              </div>
+            ) : (
+              <motion.div 
+                className="relative rounded-lg overflow-hidden"
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.3 }}
+              >
+                <ProjectGallery screenshots={item.screenshots} />
+              </motion.div>
+            )}
           </div>
 
-          <div className="px-5 pb-5">
+          <div className="px-6 pb-6">
             <div className="mb-4">
-              <h3 className="text-2xl font-semibold mb-3">{item.title}</h3>
-              <p className="text-base text-muted-foreground leading-relaxed">{item.description}</p>
-              <p className="text-base text-muted-foreground leading-relaxed mt-2">{item.descriptionZh}</p>
+              <h3 className="text-2xl font-bold mb-3 group-hover:text-[#419388] transition-colors">{item.title}</h3>
+              <p className="text-base text-muted-foreground/90 leading-relaxed">{item.description}</p>
+              <p className="text-base text-muted-foreground/80 leading-relaxed mt-2">{item.descriptionZh}</p>
             </div>
 
-            <div className="flex flex-wrap gap-1.5 mb-4">
+            <div className="flex flex-wrap gap-2 mb-5">
               {item.tags.map((tag) => (
-                <Badge key={tag} variant="secondary" className="text-sm px-2 py-0.5">{tag}</Badge>
+                <Badge 
+                  key={tag} 
+                  variant="secondary" 
+                  className="text-xs px-2.5 py-0.5 bg-muted/50 hover:bg-[#419388]/10 transition-colors"
+                >
+                  {tag}
+                </Badge>
               ))}
             </div>
 
             <div className="flex gap-3">
-              {item.githubUrl && (
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="w-full text-sm h-10 font-medium"
-                  asChild
-                >
-                  <a href={item.githubUrl} target="_blank">
-                    <Github className="mr-2 h-4 w-4" />
-                    GitHub
-                  </a>
-                </Button>
-              )}
-              {item.liveUrl && (
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="w-full text-sm h-10 font-medium"
-                  asChild
-                >
-                  <a href={item.liveUrl} target="_blank">
-                    {item.liveUrl.includes('apps.apple.com') ? (
-                      <>
-                        <Apple className="mr-2 h-4 w-4" />
-                        Download on the AppStore
-                      </>
-                    ) : (
-                      <>
-                        <ExternalLink className="mr-2 h-4 w-4" />
-                        Visit Website
-                      </>
-                    )}
-                  </a>
-                </Button>
+              {item.id === 0 ? (
+                <>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="w-full text-sm h-10 font-medium hover:bg-[#333333] hover:text-white transition-all duration-300"
+                    asChild
+                  >
+                    <a href={item.githubUrl} target="_blank" rel="noopener noreferrer">
+                      <Github className="mr-2 h-4 w-4" />
+                      GitHub
+                    </a>
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="w-full text-sm h-10 font-medium hover:bg-[#419388] hover:text-white transition-all duration-300"
+                    asChild
+                  >
+                    <a href={item.liveUrl} target="_blank" rel="noopener noreferrer">
+                      <Linkedin className="mr-2 h-4 w-4" />
+                      LinkedIn
+                    </a>
+                  </Button>
+                </>
+              ) : (
+                <>
+                  {item.githubUrl && (
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="w-full text-sm h-10 font-medium hover:bg-[#333333] hover:text-white transition-all duration-300"
+                      asChild
+                    >
+                      <a href={item.githubUrl} target="_blank" rel="noopener noreferrer">
+                        <Github className="mr-2 h-4 w-4" />
+                        GitHub
+                      </a>
+                    </Button>
+                  )}
+                  {item.liveUrl && (
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="w-full text-sm h-10 font-medium hover:bg-[#419388] hover:text-white transition-all duration-300"
+                      asChild
+                    >
+                      <a href={item.liveUrl} target="_blank" rel="noopener noreferrer">
+                        {item.liveUrl.includes('apps.apple.com') ? (
+                          <>
+                            <Apple className="mr-2 h-4 w-4" />
+                            Download on the AppStore
+                          </>
+                        ) : (
+                          <>
+                            <ExternalLink className="mr-2 h-4 w-4" />
+                            Visit Website
+                          </>
+                        )}
+                      </a>
+                    </Button>
+                  )}
+                </>
               )}
             </div>
           </div>
-        </div>
+        </motion.div>
       ))}
     </div>
   )
 }
+
+const gridClassName = "relative w-full h-full [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))] before:absolute before:inset-0 before:bg-grid-slate-900/[0.04] before:content-[''] dark:before:bg-grid-slate-100/[0.03] dark:before:bg-[size:7px_7px]"

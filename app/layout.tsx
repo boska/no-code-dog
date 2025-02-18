@@ -20,44 +20,26 @@ export default function RootLayout({
 }) {
   return (
     <html lang="zh" className={GeistSans.className} suppressHydrationWarning>
-      <body className="bg-background text-foreground">
+      <body className="bg-background text-foreground min-h-screen selection:bg-[#419388]/20">
         <ThemeProvider
-          scriptProps={{ 'data-cfasync': 'false' }}
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          <div className="relative flex min-h-screen flex-col">
-            <nav className="fixed top-0 w-full z-50 bg-gradient-to-b from-background/70 to-transparent backdrop-blur-sm border-b border-border/50">
-              <div className="w-full max-w-7xl mx-auto flex justify-between items-center p-4">
-                <div className="flex items-center gap-4">
-                  <Link
-                    href="/"
-                    className="text-lg font-semibold hover:text-primary transition-colors"
-                  >
-                    Yang Lee
-                  </Link>
-                  <Link
-                    href="/portfolio"
-                    className="text-lg hover:text-primary transition-colors"
-                  >
-                    Portfolio 作品
-                  </Link>
-                  <ThemeSwitcher />
-                </div>
-                <div>
-                  {true ? null : <HeaderAuth />}
-                </div>
+          <div className="relative">
+            <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-[#419388]/10">
+              <div className="w-full max-w-7xl mx-auto flex justify-end items-center px-6 py-3">
+                <ThemeSwitcher />
               </div>
             </nav>
-            <main className="min-h-screen">
+            <main className="relative pt-16 pb-16 px-4 max-w-7xl mx-auto">
               {children}
             </main>
             <FloatingChat />
-            <Analytics />
           </div>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
