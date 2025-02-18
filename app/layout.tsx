@@ -46,7 +46,7 @@ export default function RootLayout({
                   <ThemeSwitcher />
                 </div>
                 <div>
-                  {!hasEnvVars ? null : <HeaderAuth />}
+                  {true ? null : <HeaderAuth />}
                 </div>
               </div>
             </nav>

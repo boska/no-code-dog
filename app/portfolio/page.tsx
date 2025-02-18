@@ -5,7 +5,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/componen
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { motion } from 'framer-motion'
-import { ExternalLink, Github, ChevronLeft, ChevronRight } from 'lucide-react'
+import { ExternalLink, Github, ChevronLeft, ChevronRight, Apple } from 'lucide-react'
 import { useState } from 'react'
 import { cn } from '@/lib/utils'
 
@@ -28,66 +28,66 @@ interface PortfolioItem {
 const portfolioItems: PortfolioItem[] = [
   {
     id: 1,
-    title: 'Bonder Social',
-    description: 'Modern social networking app with real-time chat using WebSocket. Features location-based discovery and rich push notifications.',
-    descriptionZh: '現代化社群應用程式，使用 WebSocket 實現即時聊天。具備位置探索功能和豐富推送通知。',
+    title: 'Bonder iOS',
+    description: 'Modern social networking app with real-time chat using Firebase. Features location-based discovery and rich push notifications.',
+    descriptionZh: '現代化社群應用程式，使用 Firebase 實現即時聊天。具備位置探索功能和豐富推送通知。',
     screenshots: [
       { url: '/portfolio/bonder/1.jpeg', alt: 'Social Feed' },
       { url: '/portfolio/bonder/2.jpeg', alt: 'Chat Interface' },
       { url: '/portfolio/bonder/3.jpeg', alt: 'Location Discovery' },
       { url: '/portfolio/bonder/4.jpeg', alt: 'Profile View' }
     ],
-    tags: ['Swift', 'Combine', 'MapKit', 'Core Location', 'Push Notifications', 'WebSocket', 'Core Animation', 'SwiftUI', 'Core Data'],
+    tags: ['Swift', 'RxSwift', 'MapKit', 'Core Location', 'Push Notifications', 'Firebase', 'Core Animation', 'Realm'],
     liveUrl: 'https://apps.apple.com/app/bonder-social/id1234567890',
   },
   {
     id: 2,
-    title: 'EZTABLE Booking',
-    description: 'Restaurant booking app with AR menu preview using ARKit. Features custom calendar system and Apple Pay integration.',
-    descriptionZh: '餐廳訂位應用程式，使用 ARKit 實現 AR 菜單預覽。具備自訂日曆系統和 Apple Pay 整合。',
+    title: 'EZTABLE iOS + iPadOS',
+    description: 'Restaurant booking app. Features vouchers and EZCASH and Apple Pay integration.',
+    descriptionZh: '餐廳訂位應用程式，餐券 EZCASH 和 Apple Pay 整合。',
     screenshots: [
       { url: '/portfolio/eztable/1.jpeg', alt: 'Restaurant Discovery' },
       { url: '/portfolio/eztable/2.jpeg', alt: 'Booking Flow' },
       { url: '/portfolio/eztable/3.jpeg', alt: 'AR Menu Preview' },
       { url: '/portfolio/eztable/4.jpeg', alt: 'Payment Integration' }
     ],
-    tags: ['Swift', 'ARKit', 'MapKit', 'Core Location', 'PassKit', 'Core Animation', 'SwiftUI', 'Core Data', 'StoreKit'],
+    tags: ['Objective-C', 'MapKit', 'Core Location', 'PassKit', 'Core Animation', 'Core Data', 'StoreKit'],
     liveUrl: 'https://apps.apple.com/tw/app/eztable/id858841159',
   },
   {
     id: 3,
-    title: 'Mobile01 Forum',
-    description: 'Feature-rich forum app with Widget and App Clips integration. Includes native rich text editor and advanced search functionality.',
-    descriptionZh: '功能豐富的論壇應用程式，整合小工具和 App Clips。包含原生富文本編輯器和進階搜尋功能。',
+    title: 'Mobile01',
+    description: 'Feature-rich forum app with WidgetKit. Includes native rich text editor and member chating functionality.',
+    descriptionZh: '功能豐富的論壇應用程式。包含原生富文本編輯器和進階搜尋功能。',
     screenshots: [
       { url: '/portfolio/mobile01/1.jpeg', alt: 'Forum Browser' },
       { url: '/portfolio/mobile01/2.jpeg', alt: 'Rich Text Editor' },
       { url: '/portfolio/mobile01/3.jpeg', alt: 'Search Interface' },
       { url: '/portfolio/mobile01/4.jpeg', alt: 'Widget Preview' }
     ],
-    tags: ['Swift', 'WidgetKit', 'App Clips', 'Core Spotlight', 'PhotoKit', 'Core Text', 'SwiftUI', 'Core Data', 'CloudKit'],
+    tags: ['Objective-C', 'UIKit'],
     liveUrl: 'https://apps.apple.com/tw/app/mobile01/id1234567890',
   },
   {
     id: 5,
     title: 'SAP Concur iOS',
-    description: 'Enterprise expense management app with Vision-based receipt scanning. Built with offline-first architecture and Apple Wallet integration.',
-    descriptionZh: '企業費用管理應用程式，具備 Vision 收據掃描功能。採用離線優先架構，整合 Apple Wallet。',
+    description: 'Enterprise expense management app with Vision-based receipt scanning. Built with offline-first architecture and SiriKit integration.',
+    descriptionZh: '企業費用管理應用程式，具備 Vision 收據掃描功能。採用離線優先架構，整合 SiriKit。',
     screenshots: [
       { url: '/portfolio/sap-concur/1.jpeg', alt: 'Receipt Scanner' },
     ],
-    tags: ['Swift', 'Core Data', 'Vision', 'PassKit', 'LocalAuthentication', 'Core NFC', 'Combine', 'SwiftUI', 'Core Location'],
+    tags: ['Swift', 'Objective-C', 'Core Data', 'Vision', 'LocalAuthentication', 'Combine', 'SwiftUI', 'RxSwift'],
     liveUrl: 'https://apps.apple.com/us/app/sap-concur/id335023774',
   },
   {
     id: 6,
-    title: 'Opkix Camera',
-    description: 'Companion app for wearable cameras with low-latency streaming. Features Metal shaders for video effects and iCloud content sync.',
-    descriptionZh: '穿戴式相機配套應用程式，具備低延遲串流。使用 Metal 著色器實現影片特效，支援 iCloud 同步。',
+    title: 'Opkix',
+    description: 'Companion app for wearable cameras with low-latency streaming. Features AVFoundation for video effects and BLE videos sync.',
+    descriptionZh: '穿戴式相機配套應用程式，具備低延遲串流。使用 AVFoundation 實現影片特效，支援 BLE 同步。',
     screenshots: [
       { url: '/portfolio/opkix/1.jpeg', alt: 'Camera Control' },
     ],
-    tags: ['Swift', 'Metal', 'AVFoundation', 'Core Bluetooth', 'Core Image', 'PhotoKit', 'CloudKit', 'Core Motion', 'Core Audio'],
+    tags: ['Swift', 'RxSwift', 'AVFoundation', 'Core Bluetooth', 'Core Image', 'PhotoKit', 'CloudKit', 'Core Motion', 'Core Audio'],
     liveUrl: 'https://apps.apple.com/us/app/opkix/id1442645369',
   }
 ]
@@ -205,8 +205,17 @@ export default function PortfolioPage() {
                   asChild
                 >
                   <a href={item.liveUrl} target="_blank">
-                    <ExternalLink className="mr-2 h-4 w-4" />
-                    Live Demo
+                    {item.liveUrl.includes('apps.apple.com') ? (
+                      <>
+                        <Apple className="mr-2 h-4 w-4" />
+                        Download on the AppStore
+                      </>
+                    ) : (
+                      <>
+                        <ExternalLink className="mr-2 h-4 w-4" />
+                        Visit Website
+                      </>
+                    )}
                   </a>
                 </Button>
               )}
