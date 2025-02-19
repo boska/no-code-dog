@@ -30,7 +30,7 @@ const portfolioItems: PortfolioItem[] = [
     id: 0,
     title: "Yang Lee",
     description: "Experienced mobile developer specializing in iOS development with a strong track record of delivering high-quality applications. Passionate about creating intuitive user experiences and solving complex technical challenges.",
-    descriptionZh: "App 設計師，蘋果與手機為主",
+    descriptionZh: "軟體工程師，蘋果與手機為主",
     screenshots: [
       { url: '/avatar.png', alt: 'Profile Photo' }
     ],
