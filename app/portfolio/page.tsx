@@ -30,13 +30,13 @@ const portfolioItems: PortfolioItem[] = [
     id: 0,
     title: "Yang Lee",
     description: "Experienced mobile developer specializing in iOS development with a strong track record of delivering high-quality applications. Passionate about creating intuitive user experiences and solving complex technical challenges.",
-    descriptionZh: "資深 iOS 開發工程師，專注於開發高品質的行動應用程式。致力於創造直覺的使用者體驗和解決複雜的技術挑戰。",
+    descriptionZh: "App 設計師，蘋果與手機為主",
     screenshots: [
       { url: '/avatar.png', alt: 'Profile Photo' }
     ],
     tags: ["iOS Development", "Swift", "SwiftUI", "Objective-C", "React", "TypeScript", "Next.js"],
-    githubUrl: "https://github.com/yourusername",
-    liveUrl: "https://linkedin.com/in/yourusername"
+    githubUrl: "https://github.com/boska",
+    liveUrl: "https://linkedin.com/in/yangleetw"
   },
   {
     id: 1,
@@ -178,8 +178,8 @@ export default function PortfolioPage() {
           key={item.id}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ 
-            duration: 0.4, 
+          transition={{
+            duration: 0.4,
             delay: item.id * 0.1,
             ease: [0.22, 1, 0.36, 1]
           }}
@@ -189,7 +189,7 @@ export default function PortfolioPage() {
             {item.id === 0 ? (
               <div className="relative w-full h-[200px] sm:h-[240px] rounded-lg overflow-hidden bg-gradient-to-br from-[#419388]/10 via-[#419388]/5 to-background">
                 <div className="absolute inset-0 bg-grid-white/10 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))] dark:bg-grid-black/10" />
-                <motion.div 
+                <motion.div
                   className="absolute inset-0 flex items-center justify-center"
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.3 }}
@@ -206,7 +206,7 @@ export default function PortfolioPage() {
                 </motion.div>
               </div>
             ) : (
-              <motion.div 
+              <motion.div
                 className="relative rounded-lg overflow-hidden"
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.3 }}
@@ -225,9 +225,9 @@ export default function PortfolioPage() {
 
             <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-4 sm:mb-5">
               {item.tags.map((tag) => (
-                <Badge 
-                  key={tag} 
-                  variant="secondary" 
+                <Badge
+                  key={tag}
+                  variant="secondary"
                   className="text-xs px-2 sm:px-2.5 py-0.5 bg-muted/50 hover:bg-[#419388]/10 transition-colors"
                 >
                   {tag}
