@@ -22,6 +22,7 @@ export function FloatingChat() {
     },
   ])
   const [input, setInput] = useState('')
+  const [loading, setLoading] = useState(false); // Add loading state
 
   const handleSend = async () => {
     if (!input) return;
@@ -35,6 +36,8 @@ export function FloatingChat() {
 
     setMessages(prev => [...prev, userMessage])
     setInput('')
+    setLoading(true); // Set loading to true
+
     // Call the API
     const response = await fetch('/api', {
       method: 'POST',
@@ -45,6 +48,7 @@ export function FloatingChat() {
     });
 
     const data = await response.json();
+    setLoading(false); // Reset loading to false
 
     if (data.message) {
       // Add OpenAI response to chat
@@ -61,30 +65,6 @@ export function FloatingChat() {
     setInput(''); // Clear input
   };
 
-  const handleSendMock = () => {
-    if (!input.trim()) return
-
-    const userMessage: Message = {
-      id: Date.now().toString(),
-      role: 'user' as const,
-      content: input.trim(),
-      timestamp: new Date(),
-    }
-
-    setMessages(prev => [...prev, userMessage])
-    setInput('')
-
-    // Simulate response
-    setTimeout(() => {
-      const aiMessage: Message = {
-        id: (Date.now() + 1).toString(),
-        role: 'assistant' as const,
-        content: "I'll be able to help you soon! For now, feel free to browse Yang's portfolio.",
-        timestamp: new Date(),
-      }
-      setMessages(prev => [...prev, aiMessage])
-    }, 1000)
-  }
 
   return (
     <div className="fixed bottom-4 right-4 z-50">
@@ -127,6 +107,9 @@ export function FloatingChat() {
                   </div>
                 </div>
               ))}
+
+              {loading && <div className="loading">Thinking...</div>} {/* Loading indicator */}
+
             </div>
 
             {/* Input */}
