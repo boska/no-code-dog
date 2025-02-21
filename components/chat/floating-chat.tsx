@@ -23,7 +23,45 @@ export function FloatingChat() {
   ])
   const [input, setInput] = useState('')
 
-  const handleSend = () => {
+  const handleSend = async () => {
+    if (!input) return;
+
+    const userMessage: Message = {
+      id: Date.now().toString(),
+      role: 'user' as const,
+      content: input.trim(),
+      timestamp: new Date(),
+    }
+
+    setMessages(prev => [...prev, userMessage])
+    setInput('')
+    // Call the API
+    const response = await fetch('/api', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ prompt: input }),
+    });
+
+    const data = await response.json();
+
+    if (data.message) {
+      // Add OpenAI response to chat
+      const responseMessage: Message = {
+        id: Date.now().toString(),
+        role: 'assistant' as const,
+        content: data.message,
+        timestamp: new Date(),
+      }
+
+      setMessages(prev => [...prev, responseMessage])
+    }
+
+    setInput(''); // Clear input
+  };
+
+  const handleSendMock = () => {
     if (!input.trim()) return
 
     const userMessage: Message = {
@@ -80,11 +118,10 @@ export function FloatingChat() {
                   className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
                   <div
-                    className={`max-w-[85%] rounded-lg px-4 py-2 ${
-                      message.role === 'user'
-                        ? 'bg-primary text-primary-foreground ml-4'
-                        : 'bg-muted mr-4'
-                    }`}
+                    className={`max-w-[85%] rounded-lg px-4 py-2 ${message.role === 'user'
+                      ? 'bg-primary text-primary-foreground ml-4'
+                      : 'bg-muted mr-4'
+                      }`}
                   >
                     {message.content}
                   </div>
