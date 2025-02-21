@@ -14,6 +14,7 @@ export async function POST(request: NextRequest) {
         const response = await axios.post('https://api.openai.com/v1/chat/completions', {
             model: 'gpt-3.5-turbo', // or your desired model
             messages: [{ role: 'user', content: prompt }],
+            tools: [{ type: "file_search" }],
         }, {
             headers: {
                 'Authorization': `Bearer ${apiKey}`,
