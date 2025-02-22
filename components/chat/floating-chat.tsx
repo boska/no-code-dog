@@ -17,52 +17,67 @@ export function FloatingChat() {
     {
       id: '1',
       role: 'assistant',
-      content: "Hi! I'm Yang's assistant. Ask me anything about his work!",
+      content: "Hi! I'm Yang's AI assistant. I have detailed knowledge of Yang's background and experience. Feel free to ask me anything about his work, skills, or projects!",
       timestamp: new Date(),
     },
   ])
   const [input, setInput] = useState('')
-  const [loading, setLoading] = useState(false); // Add loading state
+  const [loading, setLoading] = useState(false)
 
   const handleSend = async () => {
     if (!input) return;
 
     const userMessage: Message = {
       id: Date.now().toString(),
-      role: 'user' as const,
+      role: 'user',
       content: input.trim(),
       timestamp: new Date(),
     }
 
     setMessages(prev => [...prev, userMessage])
     setInput('')
-    setLoading(true); // Set loading to true
+    setLoading(true)
 
-    // Call the API
-    const response = await fetch('/api', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ prompt: input }),
-    });
+    try {
+      const response = await fetch('/api', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ 
+          prompt: input,
+          // You could also send conversation history here if needed
+          // history: messages.map(m => ({ role: m.role, content: m.content }))
+        }),
+      });
 
-    const data = await response.json();
-    setLoading(false); // Reset loading to false
-
-    if (data.message) {
-      // Add OpenAI response to chat
-      const responseMessage: Message = {
-        id: Date.now().toString(),
-        role: 'assistant' as const,
-        content: data.message,
-        timestamp: new Date(),
+      if (!response.ok) {
+        throw new Error('Failed to get response');
       }
 
-      setMessages(prev => [...prev, responseMessage])
-    }
+      const data = await response.json();
 
-    setInput(''); // Clear input
+      if (data.message) {
+        const responseMessage: Message = {
+          id: Date.now().toString(),
+          role: 'assistant',
+          content: data.message,
+          timestamp: new Date(),
+        }
+        setMessages(prev => [...prev, responseMessage])
+      }
+    } catch (error) {
+      console.error('Chat error:', error);
+      const errorMessage: Message = {
+        id: Date.now().toString(),
+        role: 'assistant',
+        content: "I apologize, but I encountered an error. Please try again.",
+        timestamp: new Date(),
+      }
+      setMessages(prev => [...prev, errorMessage])
+    } finally {
+      setLoading(false)
+    }
   };
 
 
