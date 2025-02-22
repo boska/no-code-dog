@@ -17,6 +17,12 @@ export function FloatingChat() {
     {
       id: '1',
       role: 'assistant',
+      content: "您好！我是洋的AI助理。我對洋的背景和經驗都很了解，歡迎詢問任何關於他的工作、技能或專案的問題！",
+      timestamp: new Date(),
+    },
+    {
+      id: '2',
+      role: 'assistant',
       content: "Hi! I'm Yang's AI assistant. I have detailed knowledge of Yang's background and experience. Feel free to ask me anything about his work, skills, or projects!",
       timestamp: new Date(),
     },
@@ -44,7 +50,7 @@ export function FloatingChat() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ 
+        body: JSON.stringify({
           prompt: input,
           // You could also send conversation history here if needed
           // history: messages.map(m => ({ role: m.role, content: m.content }))
