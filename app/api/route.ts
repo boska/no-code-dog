@@ -3,7 +3,7 @@ import { NextResponse, NextRequest } from 'next/server';
 import axios from 'axios';
 
 export async function GET() {
-    return NextResponse.json({ message: 'GET request successful!' });
+    return NextResponse.json({ message: 'API is healthy' }, { status: 200 });
 }
 
 export async function POST(request: NextRequest) {
